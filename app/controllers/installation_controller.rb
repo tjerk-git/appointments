@@ -7,7 +7,6 @@ class InstallationController < ApplicationController
   def index
     @owner = Owner.new
     @owner.uuid = generate_uuid
-    @owner.name = 'Raymond' ## @TODO, make this real.
     @owner.app_id = params[:app_id]
 
     return unless @owner.save
@@ -25,4 +24,3 @@ class InstallationController < ApplicationController
     SecureRandom.uuid
   end
 end
-
