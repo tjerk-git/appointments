@@ -9,7 +9,7 @@ class CalendarsController < ApplicationController
     @calendar = Calendar.create
     data = get_decoded_params(params[:calendar])
     @calendar.name = data['name']
-    @calendar.url = data['name'].parameterize(separator: '-')
+    @calendar.url = @owner.user_id.parameterize(separator: '-')
     @calendar.client_id = data['id']
     @calendar.owner = @owner
 
