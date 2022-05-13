@@ -1,5 +1,6 @@
 class CalendarsController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
+  skip_before_action :verify_authenticity_token
   before_action :authenticate
 
   def create
