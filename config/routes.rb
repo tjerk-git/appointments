@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get '/register/:app_id', to: 'installation#index'
-  post '/calendars/', to: 'calendar#create'
+  post '/calendars/', to: 'calendars#create'
 end
