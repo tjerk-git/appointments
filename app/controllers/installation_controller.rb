@@ -8,6 +8,8 @@ class InstallationController < ApplicationController
     @owner = Owner.new
     @owner.uuid = generate_uuid
     @owner.app_id = params[:app_id]
+    ## @todo, add cleanup later, what happens if not unique?
+    @owner.user_id = generate_uuid
 
     return unless @owner.save
 
