@@ -46,16 +46,13 @@ class SpotsController < ApplicationController
         last_spot = Spot.last
         spot = Spot.new
         spot.calendar = @calendar
-        spot.start_date = last_spot.end_date
-        spot.end_date = last_spot.end_date + time_per_block.minutes
+        spot.start_date = last_spot.end_date.to_datetime
+        spot.end_date = last_spot.end_date.to_datetime + time_per_block.minutes
         spot.save
       end
 
     end
 
-
-      # minutes_between = ((start_time - end_time) * 24 * 60).to_i
-      # total_spots = minutes_between / time_per_block
     end
   end
 
