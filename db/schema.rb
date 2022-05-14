@@ -10,21 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_13_131450) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_13_140456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "blocks", force: :cascade do |t|
-    t.bigint "calendar_id", null: false
-    t.string "visitor_name"
-    t.string "visitor_email"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["calendar_id"], name: "index_blocks_on_calendar_id"
-    t.index ["visitor_email"], name: "unique_visitor_email", unique: true
-  end
 
   create_table "calendars", force: :cascade do |t|
     t.bigint "owner_id", null: false
@@ -58,6 +46,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_13_131450) do
     t.index ["uuid"], name: "uuid", unique: true
   end
 
-  add_foreign_key "blocks", "calendars"
+  create_table "spots", force: :cascade do |t|
+    t.bigint "calendar_id", null: false
+    t.string "visitor_name"
+    t.string "visitor_email"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calendar_id"], name: "index_spots_on_calendar_id"
+    t.index ["visitor_email"], name: "unique_visitor_email", unique: true
+  end
+
   add_foreign_key "calendars", "owners"
+  add_foreign_key "spots", "calendars"
 end

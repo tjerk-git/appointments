@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   get '/register/:app_id', to: 'installation#index'
   post '/calendars/', to: 'calendars#create'
+  post '/spots/', to: 'spots#create'
 end

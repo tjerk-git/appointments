@@ -7,7 +7,7 @@ class CalendarsController < ApplicationController
     return unless @owner
 
     @calendar = Calendar.create
-    data = get_decoded_params(params[:calendar])
+    data = JSON.parse(request.raw_post)
     @calendar.name = data['name']
     url = @owner.user_id + "/" + data['name'].parameterize(separator: '-')
     @calendar.url = url
