@@ -37,13 +37,13 @@ class SpotsController < ApplicationController
       # Create first
       spot = Spot.new
       spot.calendar = @calendar
-      spot.start_date = Time.at(block['startTime']).to_datetime
-      spot.end_date = Time.at(block['endTime']).to_datetime + time_per_block.minutes
+      spot.start_date = start_time
+      spot.end_date = start_time + time_per_block.minutes
       spot.save
 
       #create rest
       total_spots.times do
-        last_spot = Spot.last
+        last_spot = spot
         spot = Spot.new
         spot.calendar = @calendar
         spot.start_date = last_spot.end_date.to_datetime
