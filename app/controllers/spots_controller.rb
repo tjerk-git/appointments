@@ -25,7 +25,7 @@ class SpotsController < ApplicationController
       result_calendar = create_result_calendar(calendar['id'])
 
       calendar['blocks'].each do |block|
-        created_block = create_block(block_id)
+        created_block = { block_id: block['id'], spots: [] }
         total_spots = Spot.calculate_total_spots(
           Time.at(block['startTime']).to_datetime,
           Time.at(block['endTime']).to_datetime,
@@ -52,10 +52,6 @@ class SpotsController < ApplicationController
 
   def create_result_calendar(id)
     { calendar_id: id, created_blocks: [] }
-  end
-
-  def create_block(block_id)
-    { block_id: block_id, spots: [] }
   end
 
   def authenticate
