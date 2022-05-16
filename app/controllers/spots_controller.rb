@@ -6,54 +6,56 @@ class SpotsController < ApplicationController
 
   def create
     return unless @owner
-
-    #blocks = get_decoded_params(params[:blocks])
     data = JSON.parse(request.raw_post)
-    create_spots_from_blocks(data)
-
-    @spots = Spot.where(:calendar_id => @calendar.id)
-
-    render json: @spots
+    result = create_spots_from_blocks(data)
+    render :json => result
   end
 
   def index
-      @spots = Spot.all
+    @spots = Spot.all
   end
 
   private
 
   def create_spots_from_blocks(data)
+    result = []
 
     data.each do |calendar|
-      time_per_block = calendar['timePerSpotInMinutes']
+      @calendar = Calendar.find_by_client_id(calendar['id'])
+      result_calendar = create_result_calendar(calendar['id'])
 
       calendar['blocks'].each do |block|
-      @calendar = Calendar.find_by_client_id(calendar['id'])
-      start_time = Time.at(block['startTime']).to_datetime
-      end_time = Time.at(block['endTime']).to_datetime
-      minutes_between = ((end_time - start_time) * 24 * 60).to_i
-      total_spots = minutes_between / time_per_block -1
+        created_block = create_block(block_id)
+        total_spots = Spot.calculate_total_spots(
+          Time.at(block['startTime']).to_datetime,
+          Time.at(block['endTime']).to_datetime,
+          calendar['timePerSpotInMinutes']
+        )
 
-      # Create first
-      spot = Spot.new
-      spot.calendar = @calendar
-      spot.start_date = start_time
-      spot.end_date = start_time + time_per_block.minutes
-      spot.save
+        end_date = Time.at(block['startTime']).to_datetime + calendar['timePerSpotInMinutes'].minutes
+        spot = Spot.create_spot(Time.at(block['startTime']).to_datetime, end_date, @calendar)
+        created_block[:spots] << spot
 
-      #create rest
-      total_spots.times do
-        last_spot = spot
-        spot = Spot.new
-        spot.calendar = @calendar
-        spot.start_date = last_spot.end_date.to_datetime
-        spot.end_date = last_spot.end_date.to_datetime + time_per_block.minutes
-        spot.save
+        #create rest
+        total_spots.times do
+          last_spot = spot
+          start_date = last_spot.end_date.to_datetime
+          end_date = last_spot.end_date.to_datetime + calendar['timePerSpotInMinutes'].minutes
+          created_block[:spots] << Spot.create_spot(start_date, end_date, @calendar)
+        end
+        result_calendar[:created_blocks] << created_block
       end
-
+      result << result_calendar
     end
+    result
+  end
 
-    end
+  def create_result_calendar(id)
+    { calendar_id: id, created_blocks: [] }
+  end
+
+  def create_block(block_id)
+    { block_id: block_id, spots: [] }
   end
 
   def authenticate
