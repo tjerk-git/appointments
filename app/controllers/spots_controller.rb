@@ -2,13 +2,14 @@ class SpotsController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
   skip_before_action :verify_authenticity_token
   before_action :authenticate
-  skip_before_action :authenticate, only: [:show, :index]
+  skip_before_action :authenticate, only: %i[show index]
 
   def create
     return unless @owner
+
     data = JSON.parse(request.raw_post)
     result = create_spots_from_blocks(data)
-    render :json => result
+    render json: result
   end
 
   def index
@@ -17,6 +18,7 @@ class SpotsController < ApplicationController
 
   private
 
+  # rubocop:disable MethodLength, AbcSize
   def create_spots_from_blocks(data)
     result = []
 
@@ -36,7 +38,7 @@ class SpotsController < ApplicationController
         spot = Spot.create_spot(Time.at(block['startTime']).to_datetime, end_date, @calendar)
         created_block[:spots] << spot
 
-        #create rest
+        # create rest
         total_spots.times do
           last_spot = spot
           start_date = last_spot.end_date.to_datetime
@@ -50,6 +52,7 @@ class SpotsController < ApplicationController
     result
   end
 
+  # rubocop:enable
   def create_result_calendar(id)
     { calendar_id: id, created_blocks: [] }
   end
@@ -63,5 +66,4 @@ class SpotsController < ApplicationController
   def get_decoded_params(blocks)
     JSON.parse(blocks)
   end
-
 end

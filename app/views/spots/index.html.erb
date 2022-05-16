@@ -1,6 +1,11 @@
-<ul>
+
 <% @spots.each do |spot| %>
-  <li>Begin spot: <%= spot.start_date.to_formatted_s(:short) %></li>
-  <li>Einde spot: <%= spot.end_date.to_formatted_s(:short) %></li>
+  <div class="box">
+    <%= spot.start_date.to_formatted_s(:short) %> -
+    <%= spot.end_date.to_formatted_s(:short) %>
+
+    <footer class="card-footer">
+      <button class="button is-link is-outlined">Check in</button>
+    </footer>
+  </div>
 <% end %>
-</ul>
