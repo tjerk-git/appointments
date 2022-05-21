@@ -1,0 +1,12 @@
+<% @spots[:days].each do |day| %>
+  <h1 class="is-size-3"><%= day[:day].to_formatted_s(:short) %></h1>
+  <% day[:spots].each do |spot| %>
+    <div class="box">
+    <%= spot.start_date.to_formatted_s(:time) %> -
+    <%= spot.end_date.to_formatted_s(:time) %>
+    <footer class="card-footer">
+        <button class="button is-link is-outlined">Check in</button>
+      </footer>
+    </div>
+  <% end %>
+<% end %>

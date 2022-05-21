@@ -2,59 +2,71 @@ class SpotsController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
   skip_before_action :verify_authenticity_token
   before_action :authenticate
-  skip_before_action :authenticate, only: %i[show index]
+  skip_before_action :authenticate, only: [:show, :index]
+
+  def index
+      @spots = Spot.all
+  end
+
+  def show
+    url_params = params[:calendar_id] + "/" + params[:name]
+    calendar = Calendar.find_by_url(url_params)
+    @spots = Spot.find_week(Time.now(), calendar.id)
+  end
 
   def create
     return unless @owner
 
     data = JSON.parse(request.raw_post)
     result = create_spots_from_blocks(data)
-    render json: result
-  end
 
-  def index
-    @spots = Spot.all
+    render :json => result
   end
 
   private
 
-  # rubocop:disable MethodLength, AbcSize
   def create_spots_from_blocks(data)
     result = []
 
     data.each do |calendar|
-      @calendar = Calendar.find_by_client_id(calendar['id'])
-      result_calendar = create_result_calendar(calendar['id'])
-
+      time_per_block = calendar['timePerSpotInMinutes']
+      result_calendar = Hash.new
+      result_calendar[:calendar_id] = calendar['id']
+      result_calendar[:created_blocks] = []
       calendar['blocks'].each do |block|
-        created_block = { block_id: block['id'], spots: [] }
-        total_spots = Spot.calculate_total_spots(
-          Time.at(block['startTime']).to_datetime,
-          Time.at(block['endTime']).to_datetime,
-          calendar['timePerSpotInMinutes']
-        )
+        created_block = Hash.new
+        created_block[:block_id] = block["blockId"]
+        created_block[:spots] = []
+        @calendar = Calendar.find_by_client_id(calendar['id'])
+        start_time = Time.at(block['startTime']).to_datetime
+        end_time = Time.at(block['endTime']).to_datetime
+        minutes_between = ((end_time - start_time) * 24 * 60).to_i
+        total_spots = minutes_between / time_per_block -1
 
-        end_date = Time.at(block['startTime']).to_datetime + calendar['timePerSpotInMinutes'].minutes
-        spot = Spot.create_spot(Time.at(block['startTime']).to_datetime, end_date, @calendar)
+        # Create first
+        spot = Spot.new
+        spot.calendar = @calendar
+        spot.start_date = Time.at(block['startTime']).to_datetime
+        spot.end_date = start_time + time_per_block.minutes
+        spot.save
         created_block[:spots] << spot
 
-        # create rest
+        #create rest
         total_spots.times do
-          last_spot = spot
-          start_date = last_spot.end_date.to_datetime
-          end_date = last_spot.end_date.to_datetime + calendar['timePerSpotInMinutes'].minutes
-          created_block[:spots] << Spot.create_spot(start_date, end_date, @calendar)
+          last_spot = Spot.last
+          spot = Spot.new
+          spot.calendar = @calendar
+          spot.start_date = last_spot.end_date.to_datetime
+          spot.end_date = last_spot.end_date.to_datetime + time_per_block.minutes
+
+          created_block[:spots] << spot
+          spot.save
         end
         result_calendar[:created_blocks] << created_block
       end
       result << result_calendar
     end
     result
-  end
-
-  # rubocop:enable
-  def create_result_calendar(id)
-    { calendar_id: id, created_blocks: [] }
   end
 
   def authenticate
@@ -66,4 +78,5 @@ class SpotsController < ApplicationController
   def get_decoded_params(blocks)
     JSON.parse(blocks)
   end
+
 end

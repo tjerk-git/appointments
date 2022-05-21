@@ -1,17 +1,39 @@
 class Spot < ApplicationRecord
   belongs_to :calendar
+  scope :between, lambda {|start_date, end_date, calendar_id| where("calendar_id = ? AND start_date >= ? AND end_date <= ?", calendar_id, start_date, end_date )}
 
-  def self.create_spot(start_date, end_date, calendar)
-    spot = Spot.new
-    spot.start_date = start_date
-    spot.end_date = end_date
-    spot.calendar = calendar
-    spot.save
-    spot
+  def self.find_week(start_time, number_of_weeks=1, calendar_id)
+    first_day_of_period = start_time - start_time.wday.days
+    first_day_of_period_midnight = Time.utc(first_day_of_period.year, first_day_of_period.month, first_day_of_period.day)
+    last_day_of_period_midnight = first_day_of_period_midnight + number_of_weeks.weeks
+
+    #spots = Spot.between(first_day_of_period_midnight, last_day_of_period_midnight, calendar_id)
+    spots = Spot.all
+    # this is how i want it please <3
+    # spots = { days: [
+    #   { day: "14 mei", spots: [
+    #     Spot.find(33),
+    #     Spot.find(34),
+    #   ] },
+    #   { day: "15 mei", spots: [
+    #     Spot.find(36),
+    #     Spot.find(37),
+    #   ]}
+    # ]}
+    days = []
+    start_date = spots[0].start_date
+    spots_by_day = { days: [ { day: start_date, spots: [] } ] }
+    days << start_date.day
+    i = 0
+    spots.each do |spot|
+      unless days.include? spot.start_date.day
+          days << spot.start_date.day
+          spots_by_day[:days] << { day: spot.start_date, spots: [] }
+          i += 1
+      end
+      spots_by_day[:days][i][:spots] << spot
+    end
+    spots_by_day
   end
 
-  def self.calculate_total_spots(start_date, end_date, time_per_block)
-    minutes_between = ((end_date - start_date) * 24 * 60).to_i
-    (minutes_between / time_per_block) - 1
-  end
 end
