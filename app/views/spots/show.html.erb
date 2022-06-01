@@ -5,8 +5,30 @@
     <%= spot.start_date.to_formatted_s(:time) %> -
     <%= spot.end_date.to_formatted_s(:time) %>
     <footer class="card-footer">
-        <button class="button is-link is-outlined">Check in</button>
+        <button class="button is-link is-outlined js-modal-trigger" data-target="modal-js-subscribe-<%= spot.id %>">Check in</button>
       </footer>
+    </div>
+
+    <!-- modals !-->
+    <div id="modal-js-subscribe-<%=spot.id%>" class="modal">
+      <div class="modal-background"></div>
+
+      <div class="modal-content">
+
+        <div class="box">
+          <!-- turbo bitch !-->
+          <div id="sign_up_results">
+            <h3 class="is-size-5"> You want to subscribe for: </h1>
+            <p class="rounded time"><%= spot.start_date.to_formatted_s(:time) %> -  <%= spot.end_date.to_formatted_s(:time) %></p>
+
+            <%= render "forms/spot_sign_up_form", spot: spot %>
+          </div>
+        </div>
+      </div>
+
+      <button class="modal-close is-large" aria-label="close"></button>
     </div>
   <% end %>
 <% end %>
+
+

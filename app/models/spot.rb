@@ -7,8 +7,8 @@ class Spot < ApplicationRecord
     first_day_of_period_midnight = Time.utc(first_day_of_period.year, first_day_of_period.month, first_day_of_period.day)
     last_day_of_period_midnight = first_day_of_period_midnight + number_of_weeks.weeks
 
-    #spots = Spot.between(first_day_of_period_midnight, last_day_of_period_midnight, calendar_id)
-    spots = Spot.all
+    spots = Spot.between(first_day_of_period_midnight, last_day_of_period_midnight, calendar_id)
+    #spots = Spot.all
     # this is how i want it please <3
     # spots = { days: [
     #   { day: "14 mei", spots: [

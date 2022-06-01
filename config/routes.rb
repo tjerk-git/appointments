@@ -9,4 +9,5 @@ Rails.application.routes.draw do
 
   post '/calendars/', to: 'calendars#create'
   post '/spots/', to: 'spots#create'
+  patch '/spots/reserve/:spot_id', to: 'spots#reserve'
 end

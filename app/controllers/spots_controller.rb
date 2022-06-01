@@ -2,7 +2,7 @@ class SpotsController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
   skip_before_action :verify_authenticity_token
   before_action :authenticate
-  skip_before_action :authenticate, only: [:show, :index]
+  skip_before_action :authenticate, only: [:show, :index, :reserve]
 
   def index
       @spots = Spot.all
@@ -12,6 +12,20 @@ class SpotsController < ApplicationController
     url_params = params[:calendar_id] + "/" + params[:name]
     calendar = Calendar.find_by_url(url_params)
     @spots = Spot.find_week(Time.now(), calendar.id)
+  end
+
+  def reserve
+    spot = Spot.find(params[:spot_id])
+    spot.visitor_name = params[:visitor_name]
+    ## Check domain verification in model
+    spot.visitor_email = params[:visitor_email]
+    spot.save
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("sign_up_results", partial: "messages/sign_up_complete", locals: { spot: spot })
+      end
+    end
   end
 
   def create
