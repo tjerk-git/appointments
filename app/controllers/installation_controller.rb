@@ -23,15 +23,24 @@ class InstallationController < ApplicationController
   # param with the date and http_token with the owner
   def get_spots
     data = JSON.parse(request.raw_post)
-    last_updated_at = Time.at(data['last_updated_at']).to_datetime
     calendars = @owner.calendars
     spots  = { spots: []}
     changed_spots = []
 
+    if data['last_updated_at'] == "nil"
+      last_updated_at = 0
+    else
+      last_updated_at = Time.at(data['last_updated_at']).to_datetime
+    end
+
     return unless calendars
 
     calendars.each do |calendar|
-      changed_spots = calendar.spots.where('updated_at > ?', last_updated_at)
+      if last_updated_at
+        changed_spots = calendar.spots.where('updated_at > ?', last_updated_at)
+      else
+        changed_spots = calendar.spots
+      end
     end
 
     changed_spots.each do |spot|

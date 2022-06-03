@@ -1,9 +1,11 @@
 <% @spots[:days].each do |day| %>
-  <h1 class="is-size-3"><%= day[:day].to_formatted_s(:short) %></h1>
+  <h1 class="is-size-3">
+    <%= local_time(day[:day], '%B %e') %>
+  </h1>
   <% day[:spots].each do |spot| %>
     <div class="box">
-    <%= spot.start_date.to_formatted_s(:time) %> -
-    <%= spot.end_date.to_formatted_s(:time) %>
+     <%= local_time(spot.start_date, '%H:%M') %> -
+     <%= local_time(spot.end_date, '%H:%M') %>
     <footer class="card-footer">
         <button class="button is-link is-outlined js-modal-trigger" data-target="modal-js-subscribe-<%= spot.id %>">Check in</button>
       </footer>
