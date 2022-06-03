@@ -2,7 +2,7 @@ class SpotsController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
   skip_before_action :verify_authenticity_token
   before_action :authenticate
-  skip_before_action :authenticate, only: [:show, :index, :reserve]
+  skip_before_action :authenticate, only: [:show, :index, :reserve, :complete]
 
   def index
       @spots = Spot.all
@@ -12,6 +12,20 @@ class SpotsController < ApplicationController
     url_params = params[:calendar_id] + "/" + params[:name]
     calendar = Calendar.find_by_url(url_params)
     @spots = Spot.find_week(Time.now(), calendar.id)
+  end
+
+  def delete_spots
+    return unless @owner
+    # loop through spot_ids from this owner
+      data = JSON.parse(request.raw_post)
+
+      data["spot_ids"].each do |id|
+        spot = Spot.where(owner_id: @owner.id, id: id)
+        if spot
+          spot.status = "delete"
+          spot.save
+        end
+      end
   end
 
   def reserve

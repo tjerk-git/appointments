@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   post '/spots-update/', to: 'installation#get_spots'
 
   get '/spots', to: 'spots#index'
-  get '/spots/:calendar_id/:name', to: 'spots#show'
+  get '/spots/:calendar_id/:name', to: 'spots#show', as: 'spot_reserve'
+  get '/spots/:calendar_id/:name/:id', to: 'spots#show_spot', as: 'spot'
+  get '/spots/reserve-complete', to: 'spots#complete', as: 'spot_complete'
+
+  post '/spots/delete', to: 'spots#delete_spots'
 
   post '/calendars/', to: 'calendars#create'
   post '/spots/', to: 'spots#create'

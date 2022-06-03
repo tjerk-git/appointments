@@ -8,8 +8,8 @@ class Spot < ApplicationRecord
     first_day_of_period_midnight = Time.utc(first_day_of_period.year, first_day_of_period.month, first_day_of_period.day)
     last_day_of_period_midnight = first_day_of_period_midnight + number_of_weeks.weeks
 
-    #spots = Spot.between(first_day_of_period_midnight, last_day_of_period_midnight, calendar_id)
-    spots = Spot.all
+    spots = Spot.between(first_day_of_period_midnight, last_day_of_period_midnight, calendar_id)
+    #spots = Spot.all
     # this is how i want it please <3
     # spots = { days: [
     #   { day: "14 mei", spots: [
@@ -21,20 +21,22 @@ class Spot < ApplicationRecord
     #     Spot.find(37),
     #   ]}
     # ]}
-    days = []
-    start_date = spots[0].start_date
-    spots_by_day = { days: [ { day: start_date, spots: [] } ] }
-    days << start_date.day
-    i = 0
-    spots.each do |spot|
-      unless days.include? spot.start_date.day
-          days << spot.start_date.day
-          spots_by_day[:days] << { day: spot.start_date, spots: [] }
-          i += 1
+    if !spots.empty?
+      days = []
+      start_date = spots[0].start_date
+      spots_by_day = { days: [ { day: start_date, spots: [] } ] }
+      days << start_date.day
+      i = 0
+      spots.each do |spot|
+        unless days.include? spot.start_date.day
+            days << spot.start_date.day
+            spots_by_day[:days] << { day: spot.start_date, spots: [] }
+            i += 1
+        end
+        spots_by_day[:days][i][:spots] << spot
       end
-      spots_by_day[:days][i][:spots] << spot
+      spots_by_day
     end
-    spots_by_day
   end
 
 end

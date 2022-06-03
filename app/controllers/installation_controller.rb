@@ -35,6 +35,7 @@ class InstallationController < ApplicationController
 
     return unless calendars
 
+    ## changed spots wordt overschreven
     calendars.each do |calendar|
       if last_updated_at
         changed_spots = calendar.spots.where('updated_at > ?', last_updated_at)

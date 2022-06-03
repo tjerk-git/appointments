@@ -1,3 +1,5 @@
+<% if @spots %>
+
 <% @spots[:days].each do |day| %>
   <h1 class="is-size-3">
     <%= local_time(day[:day], '%B %e') %>
@@ -8,7 +10,7 @@
      <%= local_time(spot.end_date, '%H:%M') %>
     <footer class="card-footer">
         <button class="button is-link is-outlined js-modal-trigger" data-target="modal-js-subscribe-<%= spot.id %>">Check in</button>
-      </footer>
+    </footer>
     </div>
 
     <!-- modals !-->
@@ -31,6 +33,13 @@
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
   <% end %>
+<% end %>
+
+<% else %>
+  <br>
+  <div class="box">
+    <h1 class="is-size-3-fullhd">Deeply sorry, no spots available for this calendar right now... </h1>
+  </div>
 <% end %>
 
 
