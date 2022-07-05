@@ -20,10 +20,12 @@ class SpotsController < ApplicationController
       data = JSON.parse(request.raw_post)
 
       data["spot_ids"].each do |id|
-        spot = Spot.where(owner_id: @owner.id, id: id)
+        spot = Spot.find(id)
         if spot
-          spot.status = "delete"
-          spot.save
+          if @owner.id == spot.calendar.owner_id
+            spot.status = "delete"
+            spot.save
+          end
         end
       end
   end
