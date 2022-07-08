@@ -32,6 +32,8 @@ gem 'local_time'
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
+gem "letter_opener", group: :development
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

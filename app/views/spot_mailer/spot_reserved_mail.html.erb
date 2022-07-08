@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your spot at has been reserved.</h1>
+    <p>
+      You have successfully reserved a spot for <%= @spot.calendar.name %>.<br>
+    </p>
+    <p>
+     🚀 just follow this link: <a href="http://localhost:3000/spots/<%= @spot.slug %>">Your spot</a> or download as ICS.
+    </p>
+    <p>- Hamaki</p>
+  </body>
+</html>

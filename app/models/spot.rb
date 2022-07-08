@@ -1,8 +1,10 @@
 class Spot < ApplicationRecord
   belongs_to :calendar
+  before_validation :create_slug
+
   # add sort by start_time
   scope :between, lambda {|start_date, end_date, calendar_id|
-    where("calendar_id = ? AND start_date >= ? AND end_date <= ? AND visitor_email IS NULL AND status = '' ",
+    where("calendar_id = ? AND start_date >= ? AND end_date <= ? AND visitor_email = '' AND status = '' ",
     calendar_id, start_date, end_date )}
 
   def self.find_week(start_time, number_of_weeks=1, calendar_id)
@@ -40,5 +42,17 @@ class Spot < ApplicationRecord
       spots_by_day
     end
   end
+
+
+  def create_slug
+    if slug.blank?
+      self.slug = to_slug
+    end
+  end
+
+  def to_slug
+    "#{start_date.to_s.downcase.parameterize.tr('_', '')}-#{rand(100_000).to_s(26)}"
+  end
+
 
 end

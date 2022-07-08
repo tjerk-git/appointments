@@ -1,0 +1,24 @@
+<div class="box">
+
+  <% if @spot %>
+
+    <h1 class="is-size-3"> Spot for <%= @spot.calendar.name %> at:
+      <%= local_time(@spot.start_date, '%H:%M') %> -
+       <%= local_time(@spot.end_date, '%H:%M') %>
+    </h1>
+
+    <h1 class="is-size-3">
+      Reserved by: <%= @spot.visitor_name %>
+    </h1>
+    <br><br>
+   <%= link_to "Cancel this appointment", spot_cancel_path(@spot.slug) %>
+
+  <% else %>
+    <br>
+    <div class="box">
+      <h1 class="is-size-3-fullhd">Deeply sorry, no spot found</h1>
+    </div>
+  <% end %>
+
+</div>
+

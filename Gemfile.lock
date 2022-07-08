@@ -106,6 +106,10 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     local_time (2.1.0)
     loofah (2.16.0)
       crass (~> 1.0.2)
@@ -223,6 +227,7 @@ DEPENDENCIES
   dotenv-rails
   importmap-rails
   jbuilder
+  letter_opener
   local_time
   pg (~> 1.1)
   puma (~> 5.0)

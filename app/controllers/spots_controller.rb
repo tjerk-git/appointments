@@ -2,7 +2,7 @@ class SpotsController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
   skip_before_action :verify_authenticity_token
   before_action :authenticate
-  skip_before_action :authenticate, only: [:show, :index, :reserve, :complete]
+  skip_before_action :authenticate, only: [:show, :index, :reserve, :complete, :show_spot, :cancel_spot]
 
   def index
       @spots = Spot.all
@@ -12,6 +12,24 @@ class SpotsController < ApplicationController
     url_params = params[:calendar_id] + "/" + params[:name]
     calendar = Calendar.find_by_url(url_params)
     @spots = Spot.find_week(Time.now(), calendar.id)
+  end
+
+  def show_spot
+    @spot = Spot.find_by_slug(params[:slug])
+  end
+
+  def cancel_spot
+    spot = Spot.find_by_slug(params[:slug])
+
+    if spot
+      unless visitor_email.empty?
+        spot.visitor_name = ""
+        ## Check domain verification in model
+        spot.visitor_email = ""
+        spot.slug = ""
+        spot.save
+      end
+    end
   end
 
   def delete_spots
@@ -35,7 +53,10 @@ class SpotsController < ApplicationController
     spot.visitor_name = params[:visitor_name]
     ## Check domain verification in model
     spot.visitor_email = params[:visitor_email]
-    spot.save
+
+    if spot.save
+      SpotMailer.with(spot: spot).spot_reserved_mail.deliver_now
+    end
 
     respond_to do |format|
       format.turbo_stream do
