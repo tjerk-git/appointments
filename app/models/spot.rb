@@ -4,7 +4,7 @@ class Spot < ApplicationRecord
 
   # add sort by start_time
   scope :between, lambda {|start_date, end_date, calendar_id|
-    where("calendar_id = ? AND start_date >= ? AND end_date <= ? AND visitor_email = '' OR visitor_email = nil AND status = '' ",
+    where("calendar_id = ? AND start_date >= ? AND end_date <= ? AND visitor_email = '' OR visitor_email IS NULL AND status = '' ",
     calendar_id, start_date, end_date )}
 
   def self.find_week(start_time, number_of_weeks=1, calendar_id)
