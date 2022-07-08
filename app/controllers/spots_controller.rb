@@ -22,7 +22,7 @@ class SpotsController < ApplicationController
     spot = Spot.find_by_slug(params[:slug])
 
     if spot
-      unless visitor_email.empty?
+      unless spot.visitor_email.empty?
         spot.visitor_name = ""
         ## Check domain verification in model
         spot.visitor_email = ""
