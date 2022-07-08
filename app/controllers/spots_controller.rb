@@ -43,6 +43,7 @@ class SpotsController < ApplicationController
           if @owner.id == spot.calendar.owner_id
             spot.status = "delete"
             spot.save
+            SpotMailer.with(spot: spot).spot_deleted_mail.deliver_later
           end
         end
       end
