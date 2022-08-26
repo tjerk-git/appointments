@@ -18,5 +18,7 @@ module Appointments
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = { api_token: '0759c87d-5e86-48f2-8b1d-21a174f9bae4' }
   end
 end

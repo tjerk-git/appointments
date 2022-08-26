@@ -1,5 +1,5 @@
 class SpotMailer < ApplicationMailer
-  default from: 'notifications@example.com'
+  default from: 'appointments@hamaki.pro'
 
   def spot_reserved_mail
     @spot = params[:spot]

@@ -80,7 +80,10 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: appointments_production
-  username: appointments
-  password: <%= ENV["APPOINTMENTS_DATABASE_PASSWORD"] %>
+  Username:    postgres
+  Password:    534eb45ba2cdecee58cb3dc2616ab743c12a0ca4bf711ccc
+  Hostname:    ancient-firefly-4924-db.internal
+  Proxy Port:  5432
+  PG Port: 5433
+
+
