@@ -4,6 +4,7 @@
   <h1>
     <%= local_time(day[:day], '%B %e') %>
   </h1>
+  <hr>
   <% day[:spots].each do |spot| %>
     <div class="box">
      <%= local_time(spot.start_date, '%H:%M') %> -
