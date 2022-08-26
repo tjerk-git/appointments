@@ -19,6 +19,16 @@ class CalendarsController < ApplicationController
     render json: @calendar
   end
 
+  def destroy 
+    return unless @owner
+    @calendar = Calendar.find_by_client_id(params[:id])
+    if @calendar.owner == @owner 
+      @calendar.spots.each {|s| s.delete}
+      @calendar.delete
+    end
+  end
+  
+
   private
 
   def authenticate

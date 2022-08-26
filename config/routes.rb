@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post '/spots/delete', to: 'spots#delete_spots'
 
   post '/calendars/', to: 'calendars#create'
+  delete '/calendars/', to: 'calendars#destroy'
   post '/spots/', to: 'spots#create'
   patch '/spots/reserve/:spot_id', to: 'spots#reserve'
 
