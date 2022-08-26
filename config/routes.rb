@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
+  root "home#index"
+  
   get '/register/:app_id', to: 'installation#index'
   post '/spots-update/', to: 'installation#get_spots'
 
@@ -21,5 +22,6 @@ Rails.application.routes.draw do
   delete '/calendars/', to: 'calendars#destroy'
   post '/spots/', to: 'spots#create'
   patch '/spots/reserve/:spot_id', to: 'spots#reserve'
+
 
 end
