@@ -2,12 +2,12 @@
 
   <% if @spot %>
 
-    <h1 class="is-size-3"> Spot for <%= @spot.calendar.name %> at:
+    <h1> Spot for <%= @spot.calendar.name %> at:
       <%= local_time(@spot.start_date, '%d-%m-%y at %H:%M') %> -
        <%= local_time(@spot.end_date, '%H:%M') %>
     </h1>
 
-    <h1 class="is-size-3">
+    <h1>
       Reserved by: <%= @spot.visitor_name %>
     </h1>
     <br><br>
@@ -18,7 +18,7 @@
   <% else %>
     <br>
     <div class="box">
-      <h1 class="is-size-3-fullhd">Deeply sorry, no spot found</h1>
+      <h1>Deeply sorry, no spot found</h1>
     </div>
   <% end %>
 

@@ -95,7 +95,7 @@ class SpotsController < ApplicationController
     spot.visitor_email = params[:visitor_email]
 
     if spot.save
-      SpotMailer.with(spot: spot).spot_reserved_mail.deliver_now
+      SpotMailer.with(spot: spot).spot_reserved_mail.deliver_later
     end
 
     respond_to do |format|
