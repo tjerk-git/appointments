@@ -10,4 +10,5 @@ class SpotMailer < ApplicationMailer
     @spot = params[:spot]
     mail(to: @spot.visitor_email, subject: 'Spot has been deleted')
   end
+
 end

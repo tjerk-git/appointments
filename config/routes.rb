@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/spots/reserve-complete', to: 'spots#complete', as: 'spot_complete'
 
   get '/spots/:slug', to: 'spots#show_spot'
+  get '/spot/ical/:slug', to: 'spots#show_ical', as: 'spot_ical'
   get '/spot/cancel/:slug', to: 'spots#cancel_spot', as: 'spot_cancel'
 
   post '/spots/delete', to: 'spots#delete_spots'

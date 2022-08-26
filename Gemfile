@@ -34,6 +34,8 @@ gem "redis", "~> 4.0"
 
 gem "letter_opener", group: :development
 
+gem "icalendar"
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
