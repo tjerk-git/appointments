@@ -1,26 +1,32 @@
-<div class="box">
-
+<div class="day-container">
   <% if @spot %>
-
-    <h1> Spot for <%= @spot.calendar.name %> at:
-      <%= local_time(@spot.start_date, '%d-%m-%y at %H:%M') %> -
-       <%= local_time(@spot.end_date, '%H:%M') %>
-    </h1>
-
-    <h1>
-      Reserved by: <%= @spot.visitor_name %>
-    </h1>
-    <br><br>
-   <%= link_to "Cancel this appointment", spot_cancel_path(@spot.slug) %>
-   <br>
-   <%= link_to "Add to calendar", spot_ical_path(@spot.slug) %>
-
-  <% else %>
+  <div class="card-container">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-header-title">
+          Spot for <%= @spot.calendar.name %> at:
+        <%= local_time(@spot.start_date, '%d-%m-%y at %H:%M') %> -
+        <%= local_time(@spot.end_date, '%H:%M') %>
+          </p>
+        </div>
+        <footer class="card-footer">
+            <%= link_to "Cancel this appointment", spot_cancel_path(@spot.slug) %>
+            <%= link_to "Add to calendar", spot_ical_path(@spot.slug) %>
+        </footer>
+      </div>
     <br>
-    <div class="box">
-      <h1>Deeply sorry, no spot found</h1>
-    </div>
+  </div>
+  <% else %>
+        <div class="card-container">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-header-title">
+            Sorry, no spot found
+          </p>
+        </div>
+      </div>
+    <br>
+  </div>
   <% end %>
-
 </div>
 
