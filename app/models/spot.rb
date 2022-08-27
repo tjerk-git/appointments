@@ -14,7 +14,6 @@ class Spot < ApplicationRecord
 
     spots = Spot.between(first_day_of_period_midnight, last_day_of_period_midnight, calendar_id)
     spots = spots.select { |s| s.visitor_email == nil }
-    spots = spots.select { |s| s.visitor_email != "" }
     #spots = Spot.all
     # this is how i want it please <3
     # spots = { days: [

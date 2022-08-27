@@ -64,7 +64,7 @@ class SpotsController < ApplicationController
       unless spot.visitor_email.empty?
         spot.visitor_name = ""
         ## Check domain verification in model
-        spot.visitor_email = ""
+        spot.visitor_email = nil
         spot.slug = ""
         spot.save
       end
