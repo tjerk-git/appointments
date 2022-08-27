@@ -551,3 +551,63 @@ button {
   color:white;
   cursor: pointer;
 }
+
+.input,
+.textarea {
+  box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 5%);
+  max-width: 100%;
+  width: 100%;
+}
+
+.input,
+.select select,
+.textarea {
+  background-color: #fff;
+  border-color: #303030;
+  border-radius: 0.375em;
+  color: #363636;
+  -webkit-appearance: none;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 0.375em;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.5em;
+  justify-content: flex-start;
+  line-height: 1.5;
+  box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 80%);
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: calc(0.75em - 1px);
+  padding-top: calc(0.5em - 1px);
+  position: relative;
+  vertical-align: top;
+}
+
+.label {
+  color: #363636;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align:left;
+  margin:10px;
+}
+
+.button.is-primary {
+  background-color: #06b359;
+  border-color: transparent;
+  color: #fff;
+  padding:10px;
+  margin:10px;
+  min-width:100px;
+  border-bottom:2px solid black;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+label {
+  cursor: default;
+}

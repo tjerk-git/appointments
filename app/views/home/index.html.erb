@@ -44,7 +44,19 @@
     </div>
     <section class="modal-card-body">
       <div class="content">
-        <h1><time datetime="2018-07-07 12:00">Monday 26 augustus 10:00 - 11:00</time></h1>
+       <%= form_with url: "/spots/reserve/1", method: :patch do |form| %>
+  <div class="field">
+    <%= form.label :visitor_name, "Your name please:", class: "label" %>
+    <%= form.text_field :visitor_name, class: "input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :visitor_email, "Your e-mail please:", class: "label" %>
+    <%= form.text_field :visitor_email, class: "input" %>
+  </div>
+
+  <%= form.submit "Reserve spot", class: 'button is-primary' %>
+<% end %>
       </div>
     </section>
     <footer class="modal-card-foot">
