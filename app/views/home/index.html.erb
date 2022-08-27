@@ -1,28 +1,57 @@
+  
+<h1>Spots for Tjerk Agenda</h1>
+<br>
 
-<h1>
-  Woensdag 21 augustus
-</h1>
-
-  <div class="box">
-    10:00 - 11:00
-    <footer class="card-footer">
-        <button class="button is-link is-outlined js-modal-trigger" data-target="modal-js-subscribe-1">Check in</button>
-    </footer>
+  <div class="day-container">
+  <div class="day-bar">
+    <h1>Woensdag 26 augustus</h1>
   </div>
-
-  <!-- modals !-->
-  <div id="modal-js-subscribe-1" class="modal">
-    <div class="modal-background"></div>
-
-    <div class="modal-content">
-
-      <div class="box">
-          <h1> You want to subscribe for:</h1>
-        </div>
+  
+  <div class="card-container">
+    <div class="card">
+      <div class="card-header">
+        <p class="card-header-title">
+          <time datetime="2018-07-07 12:00">10:00 - 11:00</time>
+        </p>
       </div>
+      <footer class="card-footer">
+          <button class="claim card-footer-item js-modal-trigger" data-target="modal-js-subscribe-1">Take this spot</button>
+      </footer>
     </div>
 
-    <button class="modal-close is-large" aria-label="close"></button>
+        <div class="card">
+      <div class="card-header">
+        <p class="card-header-title">
+          <time datetime="2018-07-07 12:00">10:00 - 11:00</time>
+        </p>
+      </div>
+      <footer class="card-footer">
+          <button class="claim card-footer-item js-modal-trigger" data-target="modal-js-subscribe-1">Take this spot</button>
+      </footer>
+    </div>
   </div>
+
+ </div>
+
+
+ <!-- modals !-->
+<div class="modal" id="modal-js-subscribe-1">
+  <div class="modal-background"></div>
+  <div class="modal-card"  style="width:760px;" >
+    <div class="modal-card-head">
+      <p class="modal-card-title">Grab spot for Tjerk</p>
+      <button class="delete" aria-label="close"></button>
+    </div>
+    <section class="modal-card-body">
+      <div class="content">
+        <h1><time datetime="2018-07-07 12:00">Monday 26 augustus 10:00 - 11:00</time></h1>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Create appointment</button>
+      <button class="button">Cancel</button>
+    </footer>
+  </div>
+</div>
 
 
