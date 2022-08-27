@@ -1,6 +1,7 @@
+
+<% if @spots %>
 <h1>Spots for <%= @calendar.name %> </h1>
 <br>
-<% if @spots %>
   <% @spots[:days].each do |day| %>
   <div class="day-container">
     <div class="day-bar">
@@ -53,7 +54,11 @@
 
  <% else %>
   <br>
-  <div class="box">
-    <h1>Deeply sorry, no spots available for this calendar right now... </h1>
+   <div class="day-container">
+   <h1>Spots for <%= @calendar.name %> </h1>
+<br>
+    <div class="day-bar">
+      <h1>Deeply sorry, no spots available for this calendar right now... </h1>
+    </div>
   </div>
 <% end %>
