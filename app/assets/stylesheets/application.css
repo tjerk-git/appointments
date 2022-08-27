@@ -148,16 +148,11 @@ body {
 }
 
 .container {
-  display: flex;
   margin: 0 0 auto;
-  align-content: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align:center;
 }
 
-time{
-  font-weight:bold;
+time {
+  font-weight: bold;
 }
 
 .box {
@@ -177,11 +172,11 @@ footer {
 header {
   text-align: center;
   padding: 20px;
-  background:rgba(233, 233, 233, 0.625);
-  width:100%;
-  color:black;
-  margin-bottom:20px;
-  min-height:60px;
+  background: rgba(233, 233, 233, 0.625);
+  width: 100%;
+  color: black;
+  margin-bottom: 20px;
+  min-height: 60px;
 }
 
 h1 {
@@ -241,7 +236,7 @@ h6 {
   overflow: hidden;
   position: fixed;
   z-index: 40;
-  color:black;
+  color: black;
 }
 
 
@@ -292,7 +287,7 @@ h6 {
   align-items: stretch;
   box-shadow: 0 0.125em 0.25em rgb(10 10 10 / 10%);
   display: flex;
-  padding:20px;
+  padding: 20px;
 }
 
 .card {
@@ -302,16 +297,11 @@ h6 {
   color: #4a4a4a;
   max-width: 100%;
   position: relative;
-  margin:10px;
+  margin: 10px;
 }
 
 .card-container {
   margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  align-content: stretch;
-  justify-content: center;
-  align-items: center;
 }
 
 .modal-background {
@@ -526,28 +516,35 @@ button {
   display: flex;
 }
 
-.day-bar{
-  width:100%;
-  padding:20px;
-  box-sizing:border-box;
-  background:white;
-  border-bottom:3px solid #363636;
-  color:rgb(50, 50, 50);
+.day-bar {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background: white;
+  border-bottom: 3px solid #363636;
+  color: rgb(50, 50, 50);
 }
 
-.day-container{
-  background:white;
-  padding:10px;
-  max-width: 809px;
-  min-width:430px;
-  margin:0 auto;
+.day-container {
+  background: white;
+  padding: 10px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
+
+@media screen and (min-width: 1400px) {
+  .day-container {
+    width: 870px;
+  }
+}
+
 
 .claim {
-  padding:10px;
-  font-size:1em;
-  background-color:rgb(127, 77, 255);
-  color:white;
+  padding: 10px;
+  font-size: 1em;
+  background-color: rgb(127, 77, 255);
+  color: white;
   cursor: pointer;
 }
 
@@ -587,18 +584,18 @@ button {
   display: block;
   font-size: 1rem;
   font-weight: 700;
-  text-align:left;
-  margin:10px;
+  text-align: left;
+  margin: 10px;
 }
 
 .button.is-primary {
   background-color: #06b359;
   border-color: transparent;
   color: #fff;
-  padding:10px;
-  margin:10px;
-  min-width:100px;
-  border-bottom:2px solid black;
+  padding: 10px;
+  margin: 10px;
+  min-width: 100px;
+  border-bottom: 2px solid black;
 }
 
 *,

@@ -4,11 +4,15 @@
   <% @spots[:days].each do |day| %>
   <div class="day-container">
     <div class="day-bar">
+   
       <h1><%= local_time(day[:day], '%B %e') %></h1>
     </div>
   
     <div class="card-container">
       <% day[:spots].each do |spot| %>
+
+         <h1><%= spot.calendar_id %></h1>
+          <h1><%= spot.visitor_email %></h1>
       <!-- start card !-->
       <div class="card">
         <div class="card-header">

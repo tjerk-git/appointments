@@ -4,7 +4,7 @@ class Spot < ApplicationRecord
 
   # add sort by start_time
   scope :between, lambda {|start_date, end_date, calendar_id|
-    where("calendar_id = ? AND start_date >= ? AND end_date <= ? AND visitor_email = '' OR visitor_email IS NULL AND status = '' ",
+    where("calendar_id = ? AND start_date >= ? AND end_date <= ? AND status = '' ",
     calendar_id, start_date, end_date )}
 
   def self.find_week(start_time, number_of_weeks=1, calendar_id)
@@ -13,6 +13,8 @@ class Spot < ApplicationRecord
     last_day_of_period_midnight = first_day_of_period_midnight + number_of_weeks.weeks
 
     spots = Spot.between(first_day_of_period_midnight, last_day_of_period_midnight, calendar_id)
+    spots = spots.select { |s| s.visitor_email == nil }
+    spots = spots.select { |s| s.visitor_email != "" }
     #spots = Spot.all
     # this is how i want it please <3
     # spots = { days: [
