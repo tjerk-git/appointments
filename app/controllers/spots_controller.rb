@@ -11,8 +11,8 @@ class SpotsController < ApplicationController
   end
 
   def show
-    url_params = params[:calendar_id] + "/" + params[:name]
-    calendar = Calendar.find_by_url(url_params)
+    # url_params = params[:calendar_id] + "/" + params[:name]
+    calendar = Calendar.find_by_client_id(params[:calendar_id])
     @spots = Spot.find_week(Time.now(), calendar.id)
   end
 
