@@ -149,6 +149,7 @@ body {
 
 .container {
   margin: 0 0 auto;
+  text-align: center;
 }
 
 time {
