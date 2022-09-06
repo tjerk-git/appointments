@@ -143,8 +143,8 @@ main {
 }
 
 body {
-  background-color: #7957D6;
-  color: white;
+  color: rgb(28, 28, 28);
+  background:#F8DBD5;
 }
 
 .container {
@@ -172,15 +172,18 @@ footer {
 
 header {
   text-align: center;
-  padding: 20px;
-  background: white;
+  padding: 10px;
+  background:#7F56DE;
+  color:white;
   width: 90%;
-  color: black;
-  min-height: 60px;
   border-radius: 50px;
   margin: 0 auto;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+}
+.tagline{
+  padding:20px;
 }
 
 h1 {
@@ -547,9 +550,19 @@ button {
 .claim {
   padding: 10px;
   font-size: 1em;
-  background-color: rgb(127, 77, 255);
+  background-color: rgb(111, 59, 243);
   color: white;
   cursor: pointer;
+  border-radius: 12px;
+  line-height: 46px !important;
+  padding: 0 16px;
+  border:none;
+  font-weight:normal;
+}
+
+.claim:hover{
+  background-color: rgb(74, 18, 215);
+  transition:1s all;
 }
 
 .input,
@@ -581,6 +594,10 @@ button {
   padding-top: calc(0.5em - 1px);
   position: relative;
   vertical-align: top;
+}
+
+.logo{
+  float: left;
 }
 
 .label {
