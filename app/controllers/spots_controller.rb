@@ -118,16 +118,20 @@ class SpotsController < ApplicationController
   def create_spots_from_blocks(data)
     result = []
 
+
     data.each do |calendar|
-      time_per_block = calendar['timePerSpotInMinutes']
+      time_per_block = calendar['recipe']['timePerSpot'].to_i
+
       result_calendar = Hash.new
       result_calendar[:calendar_id] = calendar['id']
       result_calendar[:created_blocks] = []
       calendar['blocks'].each do |block|
         created_block = Hash.new
-        created_block[:block_id] = block["blockId"]
+        created_block[:block_id] = block['blockId']
         created_block[:spots] = []
         @calendar = Calendar.find_by_client_id(calendar['id'])
+        puts block
+        puts block['startTime']
         start_time = Time.at(block['startTime']).to_datetime
         end_time = Time.at(block['endTime']).to_datetime
         minutes_between = ((end_time - start_time) * 24 * 60).to_i
