@@ -173,11 +173,14 @@ footer {
 header {
   text-align: center;
   padding: 20px;
-  background: rgba(233, 233, 233, 0.625);
-  width: 100%;
+  background: white;
+  width: 90%;
   color: black;
-  margin-bottom: 20px;
   min-height: 60px;
+  border-radius: 50px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 h1 {
