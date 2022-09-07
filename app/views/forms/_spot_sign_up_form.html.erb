@@ -1,7 +1,7 @@
 <%= form_with url: "/spots/reserve/#{spot.id}", method: :patch do |form| %>
   <div class="field">
     <%= form.label :visitor_name, "Your name please:", class: "label" %>
-    <%= form.text_field :visitor_name, class: "input" %>
+    <%= form.text_field :visitor_name, class: "input", autofocus: true %>
   </div>
 
   <div class="field">
