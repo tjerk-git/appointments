@@ -1,33 +1,46 @@
 <div class="day-container">
-  <% if @spot %>
-  <div class="card-container">
-      <div class="card">
-        <div class="card-header">
-          <p class="card-header-title">
-          Spot for <%= @spot.calendar.name %> at: <br> 
-            <%= local_time(@spot.start_date, '%d-%m-%y at %H:%M') %> - 
-            <%= local_time(@spot.end_date, '%H:%M') %>
-          </p>
+  <% if @spot && @spot.status != "delete" %>  
+    <div class="card-container">
+        <div class="card">
+          <div class="card-header">
+            <p class="card-header-title">
+            Spot for <%= @spot.calendar.name %> at: <br> 
+              <%= local_time(@spot.start_date, '%d-%m-%y at %H:%M') %> - 
+              <%= local_time(@spot.end_date, '%H:%M') %>
+            </p>
+          </div>
+          <footer class="card-footer">
+              <%= link_to "Cancel this appointment", spot_cancel_path(@spot.slug) %>
+              <br>
+          </footer>
         </div>
-        <footer class="card-footer">
-            <%= link_to "Cancel this appointment", spot_cancel_path(@spot.slug) %>
-            <br>
-          
-        </footer>
-      </div>
-    <br>
-  </div>
-  <% else %>
-        <div class="card-container">
-      <div class="card">
-        <div class="card-header">
-          <p class="card-header-title">
-            Sorry, no spot found
-          </p>
+      <br>
+    </div>
+    <% end %>
+
+     <% if @spot && @spot.status == "delete" %>  
+      <div class="card-container">
+        <div class="card">
+          <div class="card-header">
+            <p class="card-header-title">
+            Sorry, spot was deleted by the owner.
+            </p>
+          </div>
         </div>
+        <br>
       </div>
+    <% else %>  
+    <div class="card-container">
+    <div class="card">
+      <div class="card-header">
+        <p class="card-header-title">
+          Sorry, spot was can't be found
+        </p>
+      </div>
+    </div>
     <br>
-  </div>
-  <% end %>
+   <% end %> 
 </div>
+
+
 

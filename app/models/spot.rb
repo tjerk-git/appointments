@@ -4,16 +4,17 @@ class Spot < ApplicationRecord
 
   # add sort by start_time
   scope :between, lambda {|start_date, end_date, calendar_id|
-    where("calendar_id = ? AND start_date >= ? AND end_date <= ? AND status = '' ",
+    where("calendar_id = ? AND start_date >= ? AND end_date <= ? AND status = ''",
     calendar_id, start_date, end_date )}
 
-  def self.find_week(start_time, number_of_weeks=1, calendar_id)
+  def self.find_week(start_time, number_of_weeks=4, calendar_id)
     first_day_of_period = start_time - start_time.wday.days
     first_day_of_period_midnight = Time.utc(first_day_of_period.year, first_day_of_period.month, first_day_of_period.day)
     last_day_of_period_midnight = first_day_of_period_midnight + number_of_weeks.weeks
 
-    spots = Spot.between(first_day_of_period_midnight, last_day_of_period_midnight, calendar_id)
+    spots = Spot.between(first_day_of_period_midnight, last_day_of_period_midnight, calendar_id).order(start_date: :asc)
     spots = spots.select { |s| s.visitor_email == nil }
+    spots = spots.select { |s| s.status != "delete" }
     #spots = Spot.all
     # this is how i want it please <3
     # spots = { days: [

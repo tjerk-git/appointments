@@ -95,13 +95,13 @@ class SpotsController < ApplicationController
     spot.visitor_email = params[:visitor_email]
     spot.save
     
-    SpotMailer.with(spot: spot).spot_reserved_mail.deliver_later
-
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update("sign_up_results", partial: "messages/sign_up_complete", locals: { spot: spot })
       end
     end
+
+    SpotMailer.with(spot: spot).spot_reserved_mail.deliver_later
   end
 
   def create
@@ -117,11 +117,8 @@ class SpotsController < ApplicationController
 
   def create_spots_from_blocks(data)
     result = []
-
-
     data.each do |calendar|
       time_per_block = calendar['recipe']['timePerSpot'].to_i
-
       result_calendar = Hash.new
       result_calendar[:calendar_id] = calendar['id']
       result_calendar[:created_blocks] = []
