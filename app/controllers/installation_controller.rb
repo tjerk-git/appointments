@@ -42,10 +42,10 @@ class InstallationController < ApplicationController
       else
         changed_spots = calendar.spots
       end
-    end
 
-    changed_spots.each do |spot|
-      spots[:spots] << spot
+      changed_spots.each do |spot|
+        spots[:spots] << spot
+      end
     end
 
     render :json => spots

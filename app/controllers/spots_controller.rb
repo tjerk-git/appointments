@@ -93,15 +93,16 @@ class SpotsController < ApplicationController
     spot.visitor_name = params[:visitor_name]
     ## Check domain verification in model
     spot.visitor_email = params[:visitor_email]
-    spot.save
     
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.update("sign_up_results", partial: "messages/sign_up_complete", locals: { spot: spot })
+    if spot.save 
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update("sign_up_results", partial: "messages/sign_up_complete", locals: { spot: spot })
+        end
       end
+       SpotMailer.with(spot: spot).spot_reserved_mail.deliver_now
     end
 
-    SpotMailer.with(spot: spot).spot_reserved_mail.deliver_later
   end
 
   def create
