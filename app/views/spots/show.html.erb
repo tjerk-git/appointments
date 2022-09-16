@@ -1,64 +1,15 @@
-
 <% if @spots %>
-<h1>Spots for <%= @calendar.name %> </h1>
-<br>
+  <h1>Spots for <%= @calendar.name %></h1>
   <% @spots[:days].each do |day| %>
-  <div class="day-container">
-    <div class="day-bar">
-   
-      <h1><%= local_time(day[:day], '%B %e') %></h1>
-    </div>
-  
-    <div class="card-container">
-      <% day[:spots].each do |spot| %>
-
-      <!-- start card !-->
-      <div class="card">
-        <div class="card-header">
-          <p class="card-header-title">
-            <time datetime="<%= spot.start_date%>"><%= local_time(spot.start_date, '%H:%M') %></time> -
-            <time datetime="<%= spot.end_date%>"><%= local_time(spot.end_date, '%H:%M') %></time>
-          </p>
-        </div>
-        <footer class="card-footer">
-          <button class="claim card-footer-item js-modal-trigger" data-target="modal-js-subscribe-<%= spot.id %>">Take this spot</button>
-        </footer>
-      </div><!-- end card !-->
-
-      <!-- modal !-->
-      <div class="modal" id="modal-js-subscribe-<%= spot.id %>">
-        <div class="modal-background"></div>
-        <div class="modal-card"  style="width:760px;">
-          <div class="modal-card-head">
-            <p class="modal-card-title">Create appointment</p>
-            <button class="delete" aria-label="close"></button>
-          </div>
-          <section class="modal-card-body">
-            <div class="content">
-              <!-- turbo bitch !-->
-              <div id="sign_up_results">
-                <h1> You want to subscribe for: <%= local_time(spot.start_date, '%H:%M') %> -  <%= local_time(spot.end_date, '%H:%M') %></h1>
-                <%= render "forms/spot_sign_up_form", spot: spot %>
-              </div>
-            </div>
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button">Cancel</button>
-          </footer>
-        </div>
-      </div>
-    <% end %>
-  </div>
-   <% end %>
- </div>
-
+  <h1><%= local_time(day[:day], '%B %e') %></h1>
+    <% day[:spots].each do |spot| %>
+      <time datetime="<%= spot.start_date%>"><%= local_time(spot.start_date, '%H:%M') %></time> -
+      <time datetime="<%= spot.end_date%>"><%= local_time(spot.end_date, '%H:%M') %></time>
+      <button>Take this spot</button>
+      <h1> You want to subscribe for: <%= local_time(spot.start_date, '%H:%M') %> -  <%= local_time(spot.end_date, '%H:%M') %></h1>
+     <% end %>
+  <% end %>
  <% else %>
-  <br>
-   <div class="day-container">
-    <div class="day-bar">
-      <h1>Spots for <%= @calendar.name %> </h1>
-      <br>
-      <h2>Deeply sorry, no spots available </h2>
-    </div>
-  </div>
+  <h1>Spots for <%= @calendar.name %> </h1>
+  <h2>Deeply sorry, no spots available </h2>
 <% end %>

@@ -1,13 +1,7 @@
 <%= form_with url: "/spots/reserve/#{spot.id}", method: :patch do |form| %>
-  <div class="field">
-    <%= form.label :visitor_name, "Your name please:", class: "label" %>
+    <%= form.label :visitor_name, "Your name please:" %>
     <%= form.text_field :visitor_name, class: "input", autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :visitor_email, "Your e-mail please:", class: "label" %>
-    <%= form.email_field :visitor_email, class: "input" %>
-  </div>
-
-  <%= form.submit "Reserve spot", class: 'button is-primary' %>
+    <%= form.label :visitor_email, "Your e-mail please:" %>
+    <%= form.email_field :visitor_email %>
+    <%= form.submit "Reserve spot" %>
 <% end %>

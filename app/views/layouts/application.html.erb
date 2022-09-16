@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Appointments</title>
+    <title>Hamaki | personal meetings made easy</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,14 +15,15 @@
   <body>
     <header>
     <div class="logo">
-      <%= image_tag "crappy_logo.png" %>
+
     </div>
       <div class="tagline">
         <b>Hamaki </b> | personal meetings without the invasion of privacy.
       </div>
     </header>
-    <main class="container"><%= yield %></main>
-    <footer>Copyright 2022 - Tjerk and Ray</footer>
+    <main class="container">
+      <%= yield %>
+      <footer>Copyright 2022 - Tjerk and Ray</footer>
+    </main>
   </body>
-
 </html>
