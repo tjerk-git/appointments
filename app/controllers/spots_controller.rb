@@ -4,21 +4,18 @@ class SpotsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
   before_action :authenticate
-  skip_before_action :authenticate, only: [:show, :index, :reserve, :complete, :show_spot, :cancel_spot, :show_ical]
+  skip_before_action :authenticate, only: [:show, :index, :reserve, :complete, :claim, :cancel, :show_ical]
 
   def index
-      @spots = Spot.all
-  end
-
-  def show
     url_params = params[:calendar_id] + "/" + params[:name]
     @calendar = Calendar.find_by_url(url_params)
     @spots = Spot.find_week(Time.now(), @calendar.id)
   end
 
-  def show_spot
+  def show
     @spot = Spot.find_by_slug(params[:slug])
   end
+
 
   def show_ical
     @spot = Spot.find_by_slug(params[:slug])
@@ -57,7 +54,7 @@ class SpotsController < ApplicationController
 
   end
 
-  def cancel_spot
+  def cancel
     spot = Spot.find_by_slug(params[:slug])
 
     if spot
@@ -79,10 +76,9 @@ class SpotsController < ApplicationController
       data["spot_ids"].each do |id|
         spot = Spot.find(id)
         if spot
-          if @owner.id == spot.calendar.owner_id
+          if @owner.id == spot.calendar.owner_id && spot.status == ""
             spot.status = "delete"
             spot.save
-
             if spot.visitor_email
               SpotMailer.with(spot: spot).spot_deleted_mail.deliver_later
             end 
@@ -92,20 +88,30 @@ class SpotsController < ApplicationController
   end
 
   def reserve
-    spot = Spot.find(params[:spot_id])
-    spot.visitor_name = params[:visitor_name]
-    ## Check domain verification in model
-    spot.visitor_email = params[:visitor_email]
-    
-    if spot.save 
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.update("sign_up_results", partial: "messages/sign_up_complete", locals: { spot: spot })
-        end
-      end
-       SpotMailer.with(spot: spot).spot_reserved_mail.deliver_now
-    end
+    @spot = Spot.find(params[:spot_id])
+  end
 
+  def claim
+    @spot = Spot.find(params[:spot_id])
+
+    if @spot.visitor_email.nil?
+      @spot.visitor_name = params[:visitor_name]
+      ## Check domain verification in model
+      @spot.visitor_email = params[:visitor_email]
+      if @spot.save 
+        flash[:succes] = "Spot has been reserved!"
+        SpotMailer.with(spot: @spot).spot_reserved_mail.deliver_now
+        render :reserve
+      else
+        flash[:spot_errors] = @spot.errors.full_messages
+        render :reserve
+      end
+    else
+      @spot.errors.add(:spot_taken, "Spot has been taken" )
+      flash[:spot_errors] = @spot.errors.full_messages
+      render :reserve
+    end
+    
   end
 
   def create

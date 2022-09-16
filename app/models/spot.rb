@@ -1,6 +1,8 @@
 class Spot < ApplicationRecord
   belongs_to :calendar
   before_validation :create_slug
+  validates :visitor_name, presence: true
+  validates :visitor_email, presence: true
 
   # add sort by start_time
   scope :between, lambda {|start_date, end_date, calendar_id|
@@ -44,6 +46,7 @@ class Spot < ApplicationRecord
       spots_by_day
     end
   end
+  
 
 
   def create_slug

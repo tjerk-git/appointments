@@ -10,16 +10,17 @@
     <%= javascript_include_tag "local-time.js" %>
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "site.js" %>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <header>
-    <div class="logo">
-
-    </div>
-      <div class="tagline">
-        <b>Hamaki </b> | personal meetings without the invasion of privacy.
-      </div>
+      <h1>Hamaki</h1>
     </header>
     <main class="container">
       <%= yield %>

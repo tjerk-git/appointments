@@ -5,3 +5,24 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# Owner
+
+# Calendar
+
+# Spots for that calendar in this week
+
+# The fixed test url so i can visit that calendar
+
+# owner = Owner.create(uuid: "1", name:"Test", user_id: "1")
+
+# calendar = Calendar.create(
+#     name: "test",
+#     url: owner.user_id + "/" + "test".parameterize(separator: '-'),
+#     client_id: "1",
+#     owner: owner
+# )
+
+3.times { 
+    Spot.create(calendar: Calendar.find(1), start_date: Time.now, end_date: Time.now + 1*60*60)
+}

@@ -7,21 +7,22 @@ Rails.application.routes.draw do
   get '/register/:app_id', to: 'installation#index'
   post '/spots-update/', to: 'installation#get_spots'
 
-  get '/spots', to: 'spots#index'
-  get '/spots/:calendar_id/:name', to: 'spots#show', as: 'spot_reserve'
-  get '/spots/:calendar_id/:name/:id', to: 'spots#show_spot', as: 'spot'
-  get '/spots/reserve-complete', to: 'spots#complete', as: 'spot_complete'
+  get '/spots/:calendar_id/:name', to: 'spots#index'
+  #get '/spots/:calendar_id/:name/:id', to: 'spots#show', as: 'spot'
+  get '/spot/reserve-complete', to: 'spots#complete', as: 'spot_complete'
 
-  get '/spots/:slug', to: 'spots#show_spot'
+  get '/spot/reserve/:spot_id', to: 'spots#reserve', as: 'spot_reserve'
+
+  get '/spot/:slug', to: 'spots#show'
   get '/spot/ical/:slug', to: 'spots#show_ical', as: 'spot_ical'
-  get '/spot/cancel/:slug', to: 'spots#cancel_spot', as: 'spot_cancel'
+  get '/spot/cancel/:slug', to: 'spots#cancel', as: 'spot_cancel'
 
   post '/spots/delete', to: 'spots#delete_spots'
 
   post '/calendars/', to: 'calendars#create'
   delete '/calendars/', to: 'calendars#destroy'
   post '/spots/', to: 'spots#create'
-  patch '/spots/reserve/:spot_id', to: 'spots#reserve'
+  patch '/spot/reserve/:spot_id', to: 'spots#claim'
 
 
 end
