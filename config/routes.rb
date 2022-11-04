@@ -24,5 +24,9 @@ Rails.application.routes.draw do
   post '/spots/', to: 'spots#create'
   patch '/spot/reserve/:spot_id', to: 'spots#claim'
 
+  if Rails.env.development?
+    get  '/remove_everything', to: 'hamaki_test#remove_everything'
+  end
+
 
 end
