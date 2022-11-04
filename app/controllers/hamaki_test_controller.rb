@@ -5,5 +5,10 @@ class HamakiTestController < ApplicationController
     Calendar.delete_all
     Owner.delete_all
   end
+
+  def get_calendars
+    @calendars = Calendar.all
+    render :json => @calendars.includes(:owner => :owner).includes(:spots => :spots)
+  end
   
 end
