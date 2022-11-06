@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   if Rails.env.development?
     get  '/remove_everything', to: 'hamaki_test#remove_everything'
     get '/get_all_calendars', to: 'hamaki_test#get_calendars'
+    post '/reserve_spot', to: 'hamaki_test#reserve_spot'
   end
 
 
