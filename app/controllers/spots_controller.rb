@@ -74,17 +74,18 @@ class SpotsController < ApplicationController
       data = JSON.parse(request.raw_post)
 
       data["spot_ids"].each do |id|
-        spot = Spot.find(id)
-        if spot
+        spot = Spot.find_by_id(id)
+        if spot != nil
           if @owner.id == spot.calendar.owner_id && spot.status == ""
             spot.status = "delete"
-            spot.save
-            if spot.visitor_email
-              SpotMailer.with(spot: spot).spot_deleted_mail.deliver_later
-            end 
+            spot.save(validate: false)
+            # if spot.visitor_email
+            #   SpotMailer.with(spot: spot).spot_deleted_mail.deliver_later
+            # end 
           end
         end
       end
+      head :ok, content_type: "text/html"
   end
 
   def reserve
