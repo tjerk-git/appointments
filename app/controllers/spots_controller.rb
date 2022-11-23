@@ -101,15 +101,14 @@ class SpotsController < ApplicationController
       @spot.visitor_email = params[:visitor_email]
       if @spot.save 
         flash[:succes] = "Spot has been reserved!"
+        render :succes
         SpotMailer.with(spot: @spot).spot_reserved_mail.deliver_now
-        render :reserve
+      
       else
-        flash[:spot_errors] = @spot.errors.full_messages
         render :reserve
       end
     else
       @spot.errors.add(:spot_taken, "Spot has been taken" )
-      flash[:spot_errors] = @spot.errors.full_messages
       render :reserve
     end
     

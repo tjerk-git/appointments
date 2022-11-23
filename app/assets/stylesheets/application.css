@@ -7,3 +7,48 @@
 :root {
     --primary: #f4511e;
 }
+
+.errors {
+    background: white;
+    border-radius: 10px;
+}
+
+.errors p {
+    color: rgb(255, 0, 0);
+    font-size: 1.3rem;
+}
+
+.flash {
+    background: white;
+    color: black;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.spot {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+}
+
+.button {
+    background: rgb(83, 83, 239);
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    cursor: pointer;
+    display: block;
+    margin-top: 8px;
+}
+
+.button:hover {
+    background: rgb(31, 31, 163);
+}
+
+
+.button a {
+    color: white;
+    text-decoration: none;
+
+}

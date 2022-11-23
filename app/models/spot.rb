@@ -48,8 +48,6 @@ class Spot < ApplicationRecord
     end
   end
   
-
-
   def create_slug
     if slug.blank?
       self.slug = to_slug
@@ -59,6 +57,5 @@ class Spot < ApplicationRecord
   def to_slug
     "#{start_date.to_s.downcase.parameterize.tr('_', '')}-#{rand(100_000).to_s(26)}"
   end
-
 
 end

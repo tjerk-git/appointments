@@ -1,14 +1,21 @@
+ <h1> You want to subscribe for: <%= local_time(@spot.start_date, '%H:%M') %> -  <%= local_time(@spot.end_date, '%H:%M') %></h1>
+
 <%= form_with url: "/spot/reserve/#{@spot.id}", data: { turbo: false }, method: :patch do |form| %>
   <% if @spot.errors.any? %>
     <div class="errors">
       <% @spot.errors.full_messages.each do |msg| %>
         <p><%= msg %></p>
       <% end %>
+      </div>
   <% end %>
+
 
   <%= form.label :visitor_name, "Your name please:" %>
   <%= form.text_field :visitor_name, class: "input", autofocus: true %>
   <%= form.label :visitor_email, "Your e-mail please:" %>
   <%= form.email_field :visitor_email %>
   <%= form.submit "Reserve spot" %>
+
 <% end %>
+
+<%= link_to 'Back to overview', :back, class: 'link' %>

@@ -10,13 +10,25 @@
     <%= javascript_include_tag "local-time.js" %>
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "site.js" %>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
   </head>
 
   <body>
     <main class="container">
+      <% flash.each do |type, msg| %>
+        <div class="flash">
+          <%= msg %>
+        </div>
+
+        <% if type == "succes" %>
+          <script type="text/javascript">
+            confetti();
+          </script>
+        <% end %>
+      <% end %>
+
       <%= yield %>
-      <footer>Copyright 2022 - Tjerk and Ray</footer>
     </main>
   </body>
 </html>
