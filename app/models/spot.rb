@@ -16,7 +16,6 @@ class Spot < ApplicationRecord
     last_day_of_period_midnight = first_day_of_period_midnight + number_of_weeks.weeks
 
     spots = Spot.between(first_day_of_period_midnight, last_day_of_period_midnight, calendar_id).order(start_date: :asc)
-    spots = spots.select { |s| s.visitor_email == nil }
     spots = spots.select { |s| s.status != "delete" }
     #spots = Spot.all
     # this is how i want it please <3
