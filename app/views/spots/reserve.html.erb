@@ -10,15 +10,15 @@
   <% end %>
 
 
-  <%= form.label :visitor_name, "Your name please:" %>
+  <%= form.label :visitor_name, "Your name:" %>
   <%= form.text_field :visitor_name, class: "input", autofocus: true %>
-  <%= form.label :visitor_email, "Your e-mail please:" %>
+  <%= form.label :visitor_email, "Your e-mail:" %>
   <%= form.email_field :visitor_email %>
 
   <%= form.label :comment, "Optional comment for host:" %>
   <%= form.text_area :comment, class: "input" %>
 
-  <%= form.submit "Reserve spot" %>
+  <%= form.submit "Create appointment" %>
 
 <% end %>
 

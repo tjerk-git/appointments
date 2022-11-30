@@ -34,8 +34,7 @@
     background: white;
     padding: 10px;
     color: black;
-    width: 20%;
-    margin-left: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
 }
 
 .spot {
@@ -65,7 +64,12 @@
     cursor: pointer;
     display: block;
     margin-top: 8px;
-    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.button span:last-child {
+    margin-left: auto;
 }
 
 .taken {
@@ -87,4 +91,21 @@
     color: white;
     text-decoration: none;
 
+}
+
+
+.take-spot:link,
+.take-spot:visited {
+    transition: all .2s;
+
+}
+
+.take-spot:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+.take-spot:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
 }
