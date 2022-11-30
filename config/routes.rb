@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   #get '/spots/:calendar_id/:name/:id', to: 'spots#show', as: 'spot'
   get '/spot/reserve-complete', to: 'spots#complete', as: 'spot_complete'
 
-  get '/spot/reserve/:spot_id', to: 'spots#reserve', as: 'spot_reserve'
+  get '/spot/reserve/:slug', to: 'spots#reserve', as: 'spot_reserve'
 
   get '/spot/:slug', to: 'spots#show'
   get '/spot/ical/:slug', to: 'spots#show_ical', as: 'spot_ical'
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   post '/calendars/', to: 'calendars#create'
   delete '/calendars/', to: 'calendars#destroy'
   post '/spots/', to: 'spots#create'
-  patch '/spot/reserve/:spot_id', to: 'spots#claim'
+  patch '/spot/reserve/:slug', to: 'spots#claim'
 
   if Rails.env.development?
     get  '/remove_everything', to: 'hamaki_test#remove_everything'

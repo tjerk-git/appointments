@@ -57,7 +57,7 @@ class SpotsController < ApplicationController
   def cancel
     spot = Spot.find_by_slug(params[:slug])
 
-    if spot
+    if spot && spot.status != "delete"
       unless spot.visitor_email.empty?
         spot.visitor_name = ""
         ## Check domain verification in model
@@ -89,16 +89,20 @@ class SpotsController < ApplicationController
   end
 
   def reserve
-    @spot = Spot.find(params[:spot_id])
+    @spot = Spot.find_by_slug(params[:slug])
   end
 
   def claim
-    @spot = Spot.find(params[:spot_id])
+    @spot = Spot.find_by_slug(params[:slug])
+
+    return unless @spot
 
     if @spot.visitor_email.nil?
       @spot.visitor_name = params[:visitor_name]
       ## Check domain verification in model
       @spot.visitor_email = params[:visitor_email]
+      @spot.comment = params[:comment]
+
       if @spot.save 
         flash[:succes] = "Spot has been reserved!"
         render :succes
