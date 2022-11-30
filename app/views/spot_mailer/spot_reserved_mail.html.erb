@@ -4,14 +4,14 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Your spot has been reserved.</h1>
+    <h1>Spot reserved for: <%= @spot.calendar.name %> </h1>
     <p>
       You have successfully reserved a spot for <%= @spot.calendar.name %>.<br>
     </p>
     <p>
-     🚀 just follow this link: <a href="https://ancient-firefly-4924.fly.dev/spots/<%= @spot.slug %>">Your spot</a>
+     🚀 just follow this link: <a href="https://hamaki.pro/spots/<%= @spot.slug %>">Your spot</a>
      You can edit and cancel your spot there.
     </p>
-    <p>-Have a nice day!- Hamaki</p>
+    <p>-Have a nice day!</p>
   </body>
 </html>
