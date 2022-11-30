@@ -24,5 +24,5 @@
 # )
 
 3.times { 
-    Spot.create(calendar: Calendar.find(8), start_date: Time.now, end_date: Time.now + 1*60*60)
+    Spot.create(calendar: Calendar.find(8), start_date: Time.now + 1 * 60000, end_date: Time.now + 1*60*60)
 }
