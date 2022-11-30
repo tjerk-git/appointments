@@ -6,11 +6,14 @@
 </div>
 <br>
   <%= link_to "Cancel this appointment", spot_cancel_path(@spot.slug) %>
+<% else %>
+  <h1>Nothing to see here...sorry!</h1>
 <% end %>
 
 <% if @spot && @spot.status == "delete" %>  
   Sorry, spot was deleted by the owner.
 <% end %>
+
 
 
 

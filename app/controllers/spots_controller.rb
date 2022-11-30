@@ -57,13 +57,15 @@ class SpotsController < ApplicationController
   def cancel
     spot = Spot.find_by_slug(params[:slug])
 
-    if spot && spot.status != "delete"
+    return unless spot
+
+    if spot.status != "delete"
       unless spot.visitor_email.empty?
         spot.visitor_name = ""
         ## Check domain verification in model
         spot.visitor_email = nil
-        spot.slug = ""
-        spot.save
+        spot.slug = spot.to_slug
+        spot.save(validate: false)
       end
     end
   end

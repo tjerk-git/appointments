@@ -54,7 +54,8 @@ class Spot < ApplicationRecord
   end
 
   def to_slug
-    "#{start_date.to_s.downcase.parameterize.tr('_', '')}-#{rand(100_000).to_s(26)}"
+    fil_name = Faker::Music.album.parameterize(separator: '-')
+    "#{SecureRandom.hex}-#{fil_name}"
   end
 
 end
