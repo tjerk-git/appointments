@@ -1,6 +1,5 @@
 class SpotsController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
-  require 'icalendar/tzinfo'
 
   skip_before_action :verify_authenticity_token
   before_action :authenticate
@@ -9,11 +8,15 @@ class SpotsController < ApplicationController
   def index
     url_params = params[:calendar_id] + "/" + params[:name]
     @calendar = Calendar.find_by_url(url_params)
+
+    return unless @calendar
     @spots = Spot.find_week(Time.now(), @calendar.id)
   end
 
   def show
     @spot = Spot.find_by_slug(params[:slug])
+
+    return unless @spot
 
     # create new instance, adding your event attributes
     @cal = AddToCalendar::URLs.new(
@@ -77,7 +80,7 @@ class SpotsController < ApplicationController
 
       if @spot.save 
         flash[:succes] = "Spot has been reserved!"
-        render :succes
+        redirect_to spot_show_path(@spot.slug)
         SpotMailer.with(spot: @spot).spot_reserved_mail.deliver_now
       
       else
