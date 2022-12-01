@@ -36,7 +36,7 @@ gem "redis", "~> 4.0"
 
 gem "letter_opener", group: :development
 
-gem "icalendar"
+gem 'add_to_calendar'
 
 gem "postmark-rails"
 

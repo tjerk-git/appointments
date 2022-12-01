@@ -14,43 +14,13 @@ class SpotsController < ApplicationController
 
   def show
     @spot = Spot.find_by_slug(params[:slug])
-  end
 
-
-  def show_ical
-    @spot = Spot.find_by_slug(params[:slug])
-
-    cal = Icalendar::Calendar.new
-    filename = "Hamaki at #{@spot.created_at}"
-
-    if params[:format] == 'vcs'
-      cal.prodid = '-//Microsoft Corporation//Outlook MIMEDIR//EN'
-      cal.version = '1.0'
-      filename += '.vcs'
-    else # ical
-      cal.prodid = '-//Acme Widgets, Inc.//NONSGML ExportToCalendar//EN'
-      cal.version = '2.0'
-      filename += '.ics'
-    end
-
-    event_start = @spot.start_date
-    event_end = @spot.end_date
-    
-    tzid = "Europe/Amsterdam"
-    tz = TZInfo::Timezone.get tzid
-    timezone = tz.ical_timezone event_start
-    cal.add_timezone timezone
-
-    cal.event do |e|
-      e.dtstart = Icalendar::Values::DateTime.new event_start, 'tzid' => tzid
-      e.dtend   = Icalendar::Values::DateTime.new event_end, 'tzid' => tzid
-      e.summary = @spot.calendar.name
-      e.description = "Meeting created by Hamaki #{@spot.slug}"
-      e.organizer = "mailto:#{@spot.calendar.owner.email}"
-      e.organizer = Icalendar::Values::CalAddress.new("mailto:#{@spot.calendar.owner.email}", cn:"#{@spot.calendar.owner.name}")
-    end
-
-    send_data cal.to_ical, type: 'text/calendar', disposition: 'attachment', filename: filename
+    # create new instance, adding your event attributes
+    @cal = AddToCalendar::URLs.new(
+      start_datetime: @spot.start_date, 
+      title: @spot.calendar.name, 
+      timezone: 'Europe/London'
+    )
 
   end
 

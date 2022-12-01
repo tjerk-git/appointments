@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   get '/spot/reserve/:slug', to: 'spots#reserve', as: 'spot_reserve'
 
   get '/spot/:slug', to: 'spots#show'
-  get '/spot/ical/:slug', to: 'spots#show_ical', as: 'spot_ical'
   get '/spot/cancel/:slug', to: 'spots#cancel', as: 'spot_cancel'
 
   post '/spots/delete', to: 'spots#delete_spots'
