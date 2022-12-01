@@ -271,7 +271,7 @@ body {
     width: 100%;
     margin: 0;
     /* Chrome 10-25, Safari 5.1-6 */
-    background: radial-gradient(#2ed9d9, #f6e8ff);
+    background: rgb(245, 239, 239);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     --color: hsl(205deg, 20%, 32%);
     --h1-color: hsl(205deg, 30%, 15%);
@@ -739,7 +739,7 @@ input[type=submit]:is([aria-current], :hover, :active, :focus),
 input[type=button]:is([aria-current], :hover, :active, :focus),
 input[type=reset]:is([aria-current], :hover, :active, :focus),
 [role=button]:is([aria-current], :hover, :active, :focus) {
-    --background-color: var(--primary-hover);
+    --background-color: var(--primary);
     --border-color: var(--primary-hover);
     --box-shadow: var(--button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0));
     --color: var(--primary-inverse);
@@ -2561,7 +2561,7 @@ textarea,
 
 .spot-group {
     margin-bottom: 20px;
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid rgb(117, 117, 117);
     border-radius: 20px;
     padding: 20px;
 }
