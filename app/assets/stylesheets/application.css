@@ -57,36 +57,40 @@
 }
 
 @media (min-width: 576px) {
-  body > header,
-  body > main,
-  body > footer,
+
+  body>header,
+  body>main,
+  body>footer,
   section {
     --block-spacing-vertical: calc(var(--spacing) * 2.5);
   }
 }
 
 @media (min-width: 768px) {
-  body > header,
-  body > main,
-  body > footer,
+
+  body>header,
+  body>main,
+  body>footer,
   section {
     --block-spacing-vertical: calc(var(--spacing) * 3);
   }
 }
 
 @media (min-width: 992px) {
-  body > header,
-  body > main,
-  body > footer,
+
+  body>header,
+  body>main,
+  body>footer,
   section {
     --block-spacing-vertical: calc(var(--spacing) * 3.5);
   }
 }
 
 @media (min-width: 1200px) {
-  body > header,
-  body > main,
-  body > footer,
+
+  body>header,
+  body>main,
+  body>footer,
   section {
     --block-spacing-vertical: calc(var(--spacing) * 4);
   }
@@ -116,20 +120,20 @@
   }
 }
 
-dialog > article {
+dialog>article {
   --block-spacing-vertical: calc(var(--spacing) * 2);
   --block-spacing-horizontal: var(--spacing);
 }
 
 @media (min-width: 576px) {
-  dialog > article {
+  dialog>article {
     --block-spacing-vertical: calc(var(--spacing) * 2.5);
     --block-spacing-horizontal: calc(var(--spacing) * 1.25);
   }
 }
 
 @media (min-width: 768px) {
-  dialog > article {
+  dialog>article {
     --block-spacing-vertical: calc(var(--spacing) * 3);
     --block-spacing-horizontal: calc(var(--spacing) * 1.5);
   }
@@ -193,7 +197,7 @@ tfoot td {
   --border-width: 3px;
 }
 
-:not(thead, tfoot) > * > td {
+:not(thead, tfoot)>*>td {
   --font-size: 0.875em;
 }
 
@@ -368,9 +372,9 @@ body {
   --icon-valid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(56, 142, 60)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
 }
 
-body > header,
-body > main,
-body > footer {
+body>header,
+body>main,
+body>footer {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
@@ -378,9 +382,10 @@ body > footer {
 }
 
 @media (min-width: 576px) {
-  body > header,
-  body > main,
-  body > footer {
+
+  body>header,
+  body>main,
+  body>footer {
     max-width: 510px;
     padding-right: 0;
     padding-left: 0;
@@ -388,25 +393,28 @@ body > footer {
 }
 
 @media (min-width: 768px) {
-  body > header,
-  body > main,
-  body > footer {
+
+  body>header,
+  body>main,
+  body>footer {
     max-width: 700px;
   }
 }
 
 @media (min-width: 992px) {
-  body > header,
-  body > main,
-  body > footer {
+
+  body>header,
+  body>main,
+  body>footer {
     max-width: 920px;
   }
 }
 
 @media (min-width: 1200px) {
-  body > header,
-  body > main,
-  body > footer {
+
+  body>header,
+  body>main,
+  body>footer {
     max-width: 1130px;
   }
 }
@@ -543,8 +551,7 @@ h6 {
   --color: var(--h6-color);
 }
 
-:where(address, blockquote, dl, figure, form, ol, p, pre, table, ul)
-  ~ :is(h1, h2, h3, h4, h5, h6) {
+:where(address, blockquote, dl, figure, form, ol, p, pre, table, ul)~ :is(h1, h2, h3, h4, h5, h6) {
   margin-top: var(--typography-spacing-vertical);
 }
 
@@ -552,11 +559,11 @@ hgroup {
   margin-bottom: var(--typography-spacing-vertical);
 }
 
-hgroup > * {
+hgroup>* {
   margin-bottom: 0;
 }
 
-hgroup > *:last-child {
+hgroup>*:last-child {
   --color: var(--muted-color);
   --font-weight: unset;
   font-size: 1rem;
@@ -712,8 +719,7 @@ input[type="reset"],
   --border-color: var(--primary);
   --color: var(--primary-inverse);
   --box-shadow: var(--button-box-shadow, 0 0 0 rgba(0, 0, 0, 0));
-  padding: var(--form-element-spacing-vertical)
-    var(--form-element-spacing-horizontal);
+  padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   outline: none;
@@ -766,21 +772,16 @@ input[type="reset"]:focus {
     0 0 0 var(--outline-width) var(--secondary-focus);
 }
 
-:where(
-    button,
-    [type="submit"],
-    [type="button"],
-    [type="reset"],
-    [role="button"]
-  )[disabled],
-:where(fieldset[disabled])
-  :is(
-    button,
-    [type="submit"],
-    [type="button"],
-    [type="reset"],
-    [role="button"]
-  ),
+:where(button,
+  [type="submit"],
+  [type="button"],
+  [type="reset"],
+  [role="button"])[disabled],
+:where(fieldset[disabled]) :is(button,
+  [type="submit"],
+  [type="button"],
+  [type="reset"],
+  [role="button"]),
 a[role="button"]:not([href]) {
   opacity: 0.5;
   pointer-events: none;
@@ -867,10 +868,7 @@ textarea {
 }
 
 input:not([type="checkbox"], [type="radio"], [type="range"]) {
-  height: calc(
-    1rem * var(--line-height) + var(--form-element-spacing-vertical) * 2 +
-      var(--border-width) * 2
-  );
+  height: calc(1rem * var(--line-height) + var(--form-element-spacing-vertical) * 2 + var(--border-width) * 2);
 }
 
 fieldset {
@@ -899,8 +897,7 @@ textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  padding: var(--form-element-spacing-vertical)
-    var(--form-element-spacing-horizontal);
+  padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
 }
 
 input,
@@ -921,37 +918,31 @@ textarea {
     color var(--transition), box-shadow var(--transition);
 }
 
-input:not(
-    [type="submit"],
-    [type="button"],
-    [type="reset"],
-    [type="checkbox"],
-    [type="radio"],
-    [readonly]
-  ):is(:active, :focus),
+input:not([type="submit"],
+  [type="button"],
+  [type="reset"],
+  [type="checkbox"],
+  [type="radio"],
+  [readonly]):is(:active, :focus),
 :where(select, textarea):is(:active, :focus) {
   --background-color: var(--form-element-active-background-color);
 }
 
-input:not(
-    [type="submit"],
-    [type="button"],
-    [type="reset"],
-    [role="switch"],
-    [readonly]
-  ):is(:active, :focus),
+input:not([type="submit"],
+  [type="button"],
+  [type="reset"],
+  [role="switch"],
+  [readonly]):is(:active, :focus),
 :where(select, textarea):is(:active, :focus) {
   --border-color: var(--form-element-active-border-color);
 }
 
-input:not(
-    [type="submit"],
-    [type="button"],
-    [type="reset"],
-    [type="range"],
-    [type="file"],
-    [readonly]
-  ):focus,
+input:not([type="submit"],
+  [type="button"],
+  [type="reset"],
+  [type="range"],
+  [type="file"],
+  [readonly]):focus,
 select:focus,
 textarea:focus {
   --box-shadow: 0 0 0 var(--outline-width) var(--form-element-focus-color);
@@ -960,65 +951,50 @@ textarea:focus {
 input:not([type="submit"], [type="button"], [type="reset"])[disabled],
 select[disabled],
 textarea[disabled],
-:where(fieldset[disabled])
-  :is(
-    input:not([type="submit"], [type="button"], [type="reset"]),
-    select,
-    textarea
-  ) {
+:where(fieldset[disabled]) :is(input:not([type="submit"], [type="button"], [type="reset"]),
+  select,
+  textarea) {
   --background-color: var(--form-element-disabled-background-color);
   --border-color: var(--form-element-disabled-border-color);
   opacity: var(--form-element-disabled-opacity);
   pointer-events: none;
 }
 
-:where(input, select, textarea):not(
-    [type="checkbox"],
-    [type="radio"],
-    [type="date"],
-    [type="datetime-local"],
-    [type="month"],
-    [type="time"],
-    [type="week"]
-  )[aria-invalid] {
-  padding-right: calc(
-    var(--form-element-spacing-horizontal) + 1.5rem
-  ) !important;
+:where(input, select, textarea):not([type="checkbox"],
+  [type="radio"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="time"],
+  [type="week"])[aria-invalid] {
+  padding-right: calc(var(--form-element-spacing-horizontal) + 1.5rem) !important;
   padding-left: var(--form-element-spacing-horizontal);
   -webkit-padding-start: var(--form-element-spacing-horizontal) !important;
   padding-inline-start: var(--form-element-spacing-horizontal) !important;
-  -webkit-padding-end: calc(
-    var(--form-element-spacing-horizontal) + 1.5rem
-  ) !important;
-  padding-inline-end: calc(
-    var(--form-element-spacing-horizontal) + 1.5rem
-  ) !important;
+  -webkit-padding-end: calc(var(--form-element-spacing-horizontal) + 1.5rem) !important;
+  padding-inline-end: calc(var(--form-element-spacing-horizontal) + 1.5rem) !important;
   background-position: center right 0.75rem;
   background-size: 1rem auto;
   background-repeat: no-repeat;
 }
 
-:where(input, select, textarea):not(
-    [type="checkbox"],
-    [type="radio"],
-    [type="date"],
-    [type="datetime-local"],
-    [type="month"],
-    [type="time"],
-    [type="week"]
-  )[aria-invalid="false"] {
+:where(input, select, textarea):not([type="checkbox"],
+  [type="radio"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="time"],
+  [type="week"])[aria-invalid="false"] {
   background-image: var(--icon-valid);
 }
 
-:where(input, select, textarea):not(
-    [type="checkbox"],
-    [type="radio"],
-    [type="date"],
-    [type="datetime-local"],
-    [type="month"],
-    [type="time"],
-    [type="week"]
-  )[aria-invalid="true"] {
+:where(input, select, textarea):not([type="checkbox"],
+  [type="radio"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="time"],
+  [type="week"])[aria-invalid="true"] {
   background-image: var(--icon-invalid);
 }
 
@@ -1037,16 +1013,12 @@ textarea[disabled],
 
 :where(input, select, textarea)[aria-invalid="true"]:is(:active, :focus) {
   --border-color: var(--form-element-invalid-active-border-color) !important;
-  --box-shadow: 0 0 0 var(--outline-width)
-    var(--form-element-invalid-focus-color) !important;
+  --box-shadow: 0 0 0 var(--outline-width) var(--form-element-invalid-focus-color) !important;
 }
 
-[dir="rtl"]
-  :where(input, select, textarea):not([type="checkbox"], [type="radio"]):is(
-    [aria-invalid],
-    [aria-invalid="true"],
-    [aria-invalid="false"]
-  ) {
+[dir="rtl"] :where(input, select, textarea):not([type="checkbox"], [type="radio"]):is([aria-invalid],
+  [aria-invalid="true"],
+  [aria-invalid="false"]) {
   background-position: center left 0.75rem;
 }
 
@@ -1087,7 +1059,7 @@ select:not([multiple], [size]) {
   background-position: center left 0.75rem;
 }
 
-:where(input, select, textarea) + small {
+:where(input, select, textarea)+small {
   display: block;
   width: 100%;
   margin-top: calc(var(--spacing) * -0.75);
@@ -1095,7 +1067,7 @@ select:not([multiple], [size]) {
   color: var(--muted-color);
 }
 
-label > :where(input, select, textarea) {
+label> :where(input, select, textarea) {
   margin-top: calc(var(--spacing) * 0.25);
 }
 
@@ -1142,8 +1114,8 @@ label > :where(input, select, textarea) {
   background-repeat: no-repeat;
 }
 
-[type="checkbox"] ~ label,
-[type="radio"] ~ label {
+[type="checkbox"]~label,
+[type="radio"]~label {
   display: inline-block;
   margin-right: 0.375em;
   margin-bottom: 0;
@@ -1253,13 +1225,11 @@ label > :where(input, select, textarea) {
   border-radius: calc(var(--border-radius) * 0.5);
 }
 
-input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"]):is(
-    [type="date"],
-    [type="datetime-local"],
-    [type="month"],
-    [type="time"],
-    [type="week"]
-  ) {
+input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"]):is([type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="time"],
+  [type="week"]) {
   --icon-position: 0.75rem;
   --icon-width: 1rem;
   padding-right: calc(var(--icon-width) + var(--icon-position));
@@ -1269,12 +1239,10 @@ input:not([type="checkbox"], [type="radio"], [type="range"], [type="file"]):is(
   background-repeat: no-repeat;
 }
 
-input:not(
-    [type="checkbox"],
-    [type="radio"],
-    [type="range"],
-    [type="file"]
-  )[type="time"] {
+input:not([type="checkbox"],
+  [type="radio"],
+  [type="range"],
+  [type="file"])[type="time"] {
   background-image: var(--icon-time);
 }
 
@@ -1289,14 +1257,11 @@ input:not(
   opacity: 0;
 }
 
-[dir="rtl"]
-  :is(
-    [type="date"],
-    [type="datetime-local"],
-    [type="month"],
-    [type="time"],
-    [type="week"]
-  ) {
+[dir="rtl"] :is([type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="time"],
+  [type="week"]) {
   text-align: right;
 }
 
@@ -1318,8 +1283,7 @@ input:not(
   margin-inline-start: 0;
   -webkit-margin-end: calc(var(--spacing) / 2);
   margin-inline-end: calc(var(--spacing) / 2);
-  padding: calc(var(--form-element-spacing-vertical) * 0.5)
-    calc(var(--form-element-spacing-horizontal) * 0.5);
+  padding: calc(var(--form-element-spacing-vertical) * 0.5) calc(var(--form-element-spacing-horizontal) * 0.5);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   outline: none;
@@ -1350,8 +1314,7 @@ input:not(
   margin-inline-start: 0;
   -webkit-margin-end: calc(var(--spacing) / 2);
   margin-inline-end: calc(var(--spacing) / 2);
-  padding: calc(var(--form-element-spacing-vertical) * 0.5)
-    calc(var(--form-element-spacing-horizontal) * 0.5);
+  padding: calc(var(--form-element-spacing-vertical) * 0.5) calc(var(--form-element-spacing-horizontal) * 0.5);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   outline: none;
@@ -1383,8 +1346,7 @@ input:not(
   margin-left: 0;
   margin-inline-start: 0;
   margin-inline-end: calc(var(--spacing) / 2);
-  padding: calc(var(--form-element-spacing-vertical) * 0.5)
-    calc(var(--form-element-spacing-horizontal) * 0.5);
+  padding: calc(var(--form-element-spacing-vertical) * 0.5) calc(var(--form-element-spacing-horizontal) * 0.5);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
   outline: none;
@@ -1511,12 +1473,10 @@ input:not(
   transform: scale(1.25);
 }
 
-input:not(
-    [type="checkbox"],
-    [type="radio"],
-    [type="range"],
-    [type="file"]
-  )[type="search"] {
+input:not([type="checkbox"],
+  [type="radio"],
+  [type="range"],
+  [type="file"])[type="search"] {
   -webkit-padding-start: calc(var(--form-element-spacing-horizontal) + 1.75rem);
   padding-inline-start: calc(var(--form-element-spacing-horizontal) + 1.75rem);
   border-radius: 5rem;
@@ -1526,36 +1486,26 @@ input:not(
   background-repeat: no-repeat;
 }
 
-input:not(
-    [type="checkbox"],
-    [type="radio"],
-    [type="range"],
-    [type="file"]
-  )[type="search"][aria-invalid] {
-  -webkit-padding-start: calc(
-    var(--form-element-spacing-horizontal) + 1.75rem
-  ) !important;
-  padding-inline-start: calc(
-    var(--form-element-spacing-horizontal) + 1.75rem
-  ) !important;
+input:not([type="checkbox"],
+  [type="radio"],
+  [type="range"],
+  [type="file"])[type="search"][aria-invalid] {
+  -webkit-padding-start: calc(var(--form-element-spacing-horizontal) + 1.75rem) !important;
+  padding-inline-start: calc(var(--form-element-spacing-horizontal) + 1.75rem) !important;
   background-position: center left 1.125rem, center right 0.75rem;
 }
 
-input:not(
-    [type="checkbox"],
-    [type="radio"],
-    [type="range"],
-    [type="file"]
-  )[type="search"][aria-invalid="false"] {
+input:not([type="checkbox"],
+  [type="radio"],
+  [type="range"],
+  [type="file"])[type="search"][aria-invalid="false"] {
   background-image: var(--icon-search), var(--icon-valid);
 }
 
-input:not(
-    [type="checkbox"],
-    [type="radio"],
-    [type="range"],
-    [type="file"]
-  )[type="search"][aria-invalid="true"] {
+input:not([type="checkbox"],
+  [type="radio"],
+  [type="range"],
+  [type="file"])[type="search"][aria-invalid="true"] {
   background-image: var(--icon-search), var(--icon-invalid);
 }
 
@@ -1564,23 +1514,17 @@ input:not(
   display: none;
 }
 
-[dir="rtl"]
-  :where(input):not(
-    [type="checkbox"],
-    [type="radio"],
-    [type="range"],
-    [type="file"]
-  )[type="search"] {
+[dir="rtl"] :where(input):not([type="checkbox"],
+  [type="radio"],
+  [type="range"],
+  [type="file"])[type="search"] {
   background-position: center right 1.125rem;
 }
 
-[dir="rtl"]
-  :where(input):not(
-    [type="checkbox"],
-    [type="radio"],
-    [type="range"],
-    [type="file"]
-  )[type="search"][aria-invalid] {
+[dir="rtl"] :where(input):not([type="checkbox"],
+  [type="radio"],
+  [type="range"],
+  [type="file"])[type="search"][aria-invalid] {
   background-position: center right 1.125rem, center left 0.75rem;
 }
 
@@ -1653,7 +1597,7 @@ pre {
   overflow-x: auto;
 }
 
-pre > code {
+pre>code {
   display: block;
   padding: var(--spacing);
   background: none;
@@ -1773,15 +1717,15 @@ details summary[role="button"]::after {
   background-image: var(--icon-chevron-button);
 }
 
-details[open] > summary {
+details[open]>summary {
   margin-bottom: calc(var(--spacing));
 }
 
-details[open] > summary:not([role]):not(:focus) {
+details[open]>summary:not([role]):not(:focus) {
   color: var(--accordion-open-summary-color);
 }
 
-details[open] > summary::after {
+details[open]>summary::after {
   transform: rotate(0);
 }
 
@@ -1805,16 +1749,15 @@ article {
   box-shadow: var(--card-box-shadow);
 }
 
-article > header,
-article > footer {
+article>header,
+article>footer {
   margin-right: calc(var(--block-spacing-horizontal) * -1);
   margin-left: calc(var(--block-spacing-horizontal) * -1);
-  padding: calc(var(--block-spacing-vertical) * 0.66)
-    var(--block-spacing-horizontal);
+  padding: calc(var(--block-spacing-vertical) * 0.66) var(--block-spacing-horizontal);
   background-color: var(--card-sectionning-background-color);
 }
 
-article > header {
+article>header {
   margin-top: calc(var(--block-spacing-vertical) * -1);
   margin-bottom: var(--block-spacing-vertical);
   border-bottom: var(--border-width) solid var(--card-border-color);
@@ -1822,7 +1765,7 @@ article > header {
   border-top-left-radius: var(--border-radius);
 }
 
-article > footer {
+article>footer {
   margin-top: var(--block-spacing-vertical);
   margin-bottom: calc(var(--block-spacing-vertical) * -1);
   border-top: var(--border-width) solid var(--card-border-color);
@@ -1876,27 +1819,26 @@ dialog article {
   }
 }
 
-dialog article > header,
-dialog article > footer {
-  padding: calc(var(--block-spacing-vertical) * 0.5)
-    var(--block-spacing-horizontal);
+dialog article>header,
+dialog article>footer {
+  padding: calc(var(--block-spacing-vertical) * 0.5) var(--block-spacing-horizontal);
 }
 
-dialog article > header .close {
+dialog article>header .close {
   margin: 0;
   margin-left: var(--spacing);
   float: right;
 }
 
-dialog article > footer {
+dialog article>footer {
   text-align: right;
 }
 
-dialog article > footer [role="button"] {
+dialog article>footer [role="button"] {
   margin-bottom: 0;
 }
 
-dialog article > footer [role="button"]:not(:first-of-type) {
+dialog article>footer [role="button"]:not(:first-of-type) {
   margin-left: calc(var(--spacing) * 0.5);
 }
 
@@ -1947,18 +1889,16 @@ nav ul:last-of-type {
 nav li {
   display: inline-block;
   margin: 0;
-  padding: var(--nav-element-spacing-vertical)
-    var(--nav-element-spacing-horizontal);
+  padding: var(--nav-element-spacing-vertical) var(--nav-element-spacing-horizontal);
 }
 
-nav li > * {
+nav li>* {
   --spacing: 0;
 }
 
 nav :where(a, [role="link"]) {
   display: inline-block;
-  margin: calc(var(--nav-link-spacing-vertical) * -1)
-    calc(var(--nav-link-spacing-horizontal) * -1);
+  margin: calc(var(--nav-link-spacing-vertical) * -1) calc(var(--nav-link-spacing-horizontal) * -1);
   padding: var(--nav-link-spacing-vertical) var(--nav-link-spacing-horizontal);
   border-radius: var(--border-radius);
   text-decoration: none;
@@ -2009,8 +1949,7 @@ aside li {
 }
 
 aside li {
-  padding: calc(var(--nav-element-spacing-vertical) * 0.5)
-    var(--nav-element-spacing-horizontal);
+  padding: calc(var(--nav-element-spacing-vertical) * 0.5) var(--nav-element-spacing-horizontal);
 }
 
 aside li a {
@@ -2063,13 +2002,9 @@ progress::-moz-progress-bar {
 
 @media (prefers-reduced-motion: no-preference) {
   progress:indeterminate {
-    background: var(--progress-background-color)
-      linear-gradient(
-        to right,
+    background: var(--progress-background-color) linear-gradient(to right,
         var(--progress-color) 30%,
-        var(--progress-background-color) 30%
-      )
-      top left/150% 150% no-repeat;
+        var(--progress-background-color) 30%) top left/150% 150% no-repeat;
     animation: progress-indeterminate 1s linear infinite;
   }
 
@@ -2106,8 +2041,8 @@ li[role="list"] {
   position: relative;
 }
 
-details[role="list"] summary + ul,
-li[role="list"] > ul {
+details[role="list"] summary+ul,
+li[role="list"]>ul {
   display: flex;
   z-index: 99;
   position: absolute;
@@ -2127,45 +2062,42 @@ li[role="list"] > ul {
   white-space: nowrap;
 }
 
-details[role="list"] summary + ul li,
-li[role="list"] > ul li {
+details[role="list"] summary+ul li,
+li[role="list"]>ul li {
   width: 100%;
   margin-bottom: 0;
-  padding: calc(var(--form-element-spacing-vertical) * 0.5)
-    var(--form-element-spacing-horizontal);
+  padding: calc(var(--form-element-spacing-vertical) * 0.5) var(--form-element-spacing-horizontal);
   list-style: none;
 }
 
-details[role="list"] summary + ul li:first-of-type,
-li[role="list"] > ul li:first-of-type {
+details[role="list"] summary+ul li:first-of-type,
+li[role="list"]>ul li:first-of-type {
   margin-top: calc(var(--form-element-spacing-vertical) * 0.5);
 }
 
-details[role="list"] summary + ul li:last-of-type,
-li[role="list"] > ul li:last-of-type {
+details[role="list"] summary+ul li:last-of-type,
+li[role="list"]>ul li:last-of-type {
   margin-bottom: calc(var(--form-element-spacing-vertical) * 0.5);
 }
 
-details[role="list"] summary + ul li a,
-li[role="list"] > ul li a {
+details[role="list"] summary+ul li a,
+li[role="list"]>ul li a {
   display: block;
-  margin: calc(var(--form-element-spacing-vertical) * -0.5)
-    calc(var(--form-element-spacing-horizontal) * -1);
-  padding: calc(var(--form-element-spacing-vertical) * 0.5)
-    var(--form-element-spacing-horizontal);
+  margin: calc(var(--form-element-spacing-vertical) * -0.5) calc(var(--form-element-spacing-horizontal) * -1);
+  padding: calc(var(--form-element-spacing-vertical) * 0.5) var(--form-element-spacing-horizontal);
   overflow: hidden;
   color: var(--dropdown-color);
   text-decoration: none;
   text-overflow: ellipsis;
 }
 
-details[role="list"] summary + ul li a:hover,
-li[role="list"] > ul li a:hover {
+details[role="list"] summary+ul li a:hover,
+li[role="list"]>ul li a:hover {
   background-color: var(--dropdown-hover-background-color);
 }
 
 details[role="list"] summary::after,
-li[role="list"] > a::after {
+li[role="list"]>a::after {
   display: block;
   width: 1rem;
   height: calc(1rem * var(--line-height, 1.5));
@@ -2189,12 +2121,8 @@ details[role="list"] summary {
 }
 
 details[role="list"] summary:not([role]) {
-  height: calc(
-    1rem * var(--line-height) + var(--form-element-spacing-vertical) * 2 +
-      var(--border-width) * 2
-  );
-  padding: var(--form-element-spacing-vertical)
-    var(--form-element-spacing-horizontal);
+  height: calc(1rem * var(--line-height) + var(--form-element-spacing-vertical) * 2 + var(--border-width) * 2);
+  padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
   border: var(--border-width) solid var(--form-element-border-color);
   border-radius: var(--border-radius);
   background-color: var(--form-element-background-color);
@@ -2239,15 +2167,15 @@ nav li[role="list"] a {
   direction: ltr;
 }
 
-nav details[role="list"] summary + ul,
-nav li[role="list"] > ul {
+nav details[role="list"] summary+ul,
+nav li[role="list"]>ul {
   min-width: -moz-fit-content;
   min-width: fit-content;
   border-radius: var(--border-radius);
 }
 
-nav details[role="list"] summary + ul li a,
-nav li[role="list"] > ul li a {
+nav details[role="list"] summary+ul li a,
+nav li[role="list"]>ul li a {
   border-radius: 0;
 }
 
@@ -2261,7 +2189,7 @@ nav details[role="list"][open] summary {
   border-radius: var(--border-radius);
 }
 
-nav details[role="list"] summary + ul {
+nav details[role="list"] summary+ul {
   margin-top: var(--outline-width);
   -webkit-margin-start: 0;
   margin-inline-start: 0;
@@ -2272,30 +2200,26 @@ nav details[role="list"] summary[role="link"] {
   line-height: var(--line-height);
 }
 
-nav details[role="list"] summary[role="link"] + ul {
+nav details[role="list"] summary[role="link"]+ul {
   margin-top: calc(var(--nav-link-spacing-vertical) + var(--outline-width));
   -webkit-margin-start: calc(var(--nav-link-spacing-horizontal) * -1);
   margin-inline-start: calc(var(--nav-link-spacing-horizontal) * -1);
 }
 
-li[role="list"]:hover > ul,
-li[role="list"] a:active ~ ul,
-li[role="list"] a:focus ~ ul {
+li[role="list"]:hover>ul,
+li[role="list"] a:active~ul,
+li[role="list"] a:focus~ul {
   display: flex;
 }
 
-li[role="list"] > ul {
+li[role="list"]>ul {
   display: none;
   margin-top: calc(var(--nav-link-spacing-vertical) + var(--outline-width));
-  -webkit-margin-start: calc(
-    var(--nav-element-spacing-horizontal) - var(--nav-link-spacing-horizontal)
-  );
-  margin-inline-start: calc(
-    var(--nav-element-spacing-horizontal) - var(--nav-link-spacing-horizontal)
-  );
+  -webkit-margin-start: calc(var(--nav-element-spacing-horizontal) - var(--nav-link-spacing-horizontal));
+  margin-inline-start: calc(var(--nav-element-spacing-horizontal) - var(--nav-link-spacing-horizontal));
 }
 
-li[role="list"] > a::after {
+li[role="list"]>a::after {
   background-image: var(--icon-chevron);
 }
 
@@ -2450,6 +2374,7 @@ a[aria-busy="true"] {
 }
 
 @media (hover: hover) and (pointer: fine) {
+
   [data-tooltip][data-placement="bottom"]:focus::before,
   [data-tooltip][data-placement="bottom"]:focus::after,
   [data-tooltip][data-placement="bottom"]:hover [data-tooltip]:focus::before,
@@ -2659,6 +2584,7 @@ textarea,
 * Reduce Motion Features
 */
 @media (prefers-reduced-motion: reduce) {
+
   *:not([aria-busy="true"]),
   :not([aria-busy="true"])::before,
   :not([aria-busy="true"])::after {
@@ -2759,7 +2685,7 @@ textarea,
 }
 
 .button:hover {
-  background: rgb(31, 31, 163);
+  background: rgb(98, 98, 98);
 }
 
 .button a {
@@ -2793,4 +2719,8 @@ textarea,
   margin-top: 10px;
   box-shadow: 5px 5px rgb(147, 147, 147);
   margin-bottom: 10px;
+}
+
+.pink {
+  background: #d74cf9;
 }
