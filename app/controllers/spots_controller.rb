@@ -82,7 +82,6 @@ class SpotsController < ApplicationController
         flash[:succes] = "Spot has been reserved!"
         redirect_to spot_show_path(@spot.slug)
         SpotMailer.with(spot: @spot).spot_reserved_mail.deliver_now
-      
       else
         render :reserve
       end
@@ -111,19 +110,18 @@ class SpotsController < ApplicationController
       result_calendar = Hash.new
       result_calendar[:calendar_id] = calendar['id']
       result_calendar[:created_blocks] = []
+
       calendar['blocks'].each do |block|
         created_block = Hash.new
         created_block[:block_id] = block['blockId']
         created_block[:spots] = []
         @calendar = Calendar.find_by_client_id(calendar['id'])
-        puts block
-        puts block['startTime']
         start_time = Time.at(block['startTime']).to_datetime
         end_time = Time.at(block['endTime']).to_datetime
         minutes_between = ((end_time - start_time) * 24 * 60).to_i
         total_spots = minutes_between / time_per_block -1
 
-        # Create first
+        # first
         spot = Spot.new
         spot.calendar = @calendar
         spot.start_date = Time.at(block['startTime']).to_datetime
@@ -138,7 +136,6 @@ class SpotsController < ApplicationController
           spot.calendar = @calendar
           spot.start_date = last_spot.end_date.to_datetime
           spot.end_date = last_spot.end_date.to_datetime + time_per_block.minutes
-
           created_block[:spots] << spot
           spot.save
         end

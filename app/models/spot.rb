@@ -1,3 +1,15 @@
+## 
+# spots = { days: [
+#   { day: "14 mei", spots: [
+#     Spot.find(33),
+#     Spot.find(34),
+#   ] },
+#   { day: "15 mei", spots: [
+#     Spot.find(36),
+#     Spot.find(37),
+#   ]}
+# ]}
+
 class Spot < ApplicationRecord
   belongs_to :calendar
   before_validation :create_slug
@@ -10,6 +22,10 @@ class Spot < ApplicationRecord
     where("calendar_id = ? AND start_date >= ? AND end_date <= ? AND status = ''",
     calendar_id, start_date, end_date )}
 
+  def self.delete_old_spots
+      Spot.where("start_date < ?", 30.days.ago).delete_all
+  end
+
   def self.find_week(start_time, number_of_weeks=4, calendar_id)
     first_day_of_period = start_time - start_time.wday.days
     first_day_of_period_midnight = Time.utc(first_day_of_period.year, first_day_of_period.month, first_day_of_period.day)
@@ -18,18 +34,7 @@ class Spot < ApplicationRecord
 
     spots = Spot.between(today, last_day_of_period_midnight, calendar_id).order(start_date: :asc)
     spots = spots.select { |s| s.status != "delete" }
-    #spots = Spot.all
-    # this is how i want it please <3
-    # spots = { days: [
-    #   { day: "14 mei", spots: [
-    #     Spot.find(33),
-    #     Spot.find(34),
-    #   ] },
-    #   { day: "15 mei", spots: [
-    #     Spot.find(36),
-    #     Spot.find(37),
-    #   ]}
-    # ]}
+
     if !spots.empty?
       days = []
       start_date = spots[0].start_date
