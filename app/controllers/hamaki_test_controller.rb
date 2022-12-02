@@ -17,7 +17,7 @@ class HamakiTestController < ApplicationController
     @spot = Spot.find(params[:id])
     @spot.visitor_email = "test@example.com"
     @spot.visitor_name = "Test user"
-    
+    @spot.comment = "This is a comment of the test user"
     @spot.save
   end
   
