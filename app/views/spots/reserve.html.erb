@@ -1,8 +1,6 @@
- 
- 
- 
-<%= link_to :back, class: 'link' do %>
 
+<div class="spot__time">
+<%= link_to :back, class: 'link' do %>
 <svg width="24px" height="16px" viewBox="0 0 24 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Afspraak" transform="translate(-35.000000, -127.000000)" fill="#E7E4EE">
@@ -12,10 +10,9 @@
         </g>
     </g>
 </svg>
-
 <% end %>
-<h2> <%= local_time(@spot.start_date,'%e %B') %>: <%= local_time(@spot.start_date, '%H:%M') %> -  <%= local_time(@spot.end_date, '%H:%M') %></h2>
-
+  <h2><%= local_time(@spot.start_date,'%e %B') %></h2>
+</div>
 <%= form_with url: "/spot/reserve/#{@spot.slug}", data: { turbo: false }, method: :patch do |form| %>
   <% if @spot.errors.any? %>
     <div class="errors">
