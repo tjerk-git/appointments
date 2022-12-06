@@ -1,17 +1,26 @@
 <% if @spots %>
-    <h1><%= @calendar.name %></h1>
     <% @spots[:days].each do |day| %>
 
     <div class="spot-group">
-    <h2><%= local_time(day[:day], '%e %B') %><span class="smaller-date"><%= local_time(day[:day], '%d-%m-%Y') %></span></h2>
+    <h2><%= local_time(day[:day], '%e %B') %></h2>
 
     <% day[:spots].each do |spot| %>
 
     <% if spot.visitor_email == nil %>
-      <%= link_to spot_reserve_path(spot.slug), class: "button #{@calendar.color}"  do %>
-        <time datetime="<%= spot.start_date%>"><%= local_time(spot.start_date, '%H:%M') %></time> -
+      <%= link_to spot_reserve_path(spot.slug), class: "button"  do %>
+        <time datetime="<%= spot.start_date%>"><%= local_time(spot.start_date, '%H:%M') %></time> - 
         <time datetime="<%= spot.end_date%>"><%= local_time(spot.end_date, '%H:%M') %></time>
-        <span class="take-spot">Let's meet!</span>
+        <span class="take-spot">
+        <?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="16px" viewBox="0 0 24 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>assets/icons/arrow</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="assets/icons/arrow" fill="#7958D6">
+            <polygon transform="translate(11.600922, 8.000000) rotate(-180.000000) translate(-11.600922, -8.000000) " points="8.00278293 3.55271368e-15 1.5235185 6.47975554 1.52046273 6.4766452 0 7.99710793 0.00311033504 8.00021827 0 8.00327404 1.52046273 9.52373677 1.5235185 9.520681 8.00294663 16 9.52340936 14.4795373 4.11933864 9.07546655 23.2018444 9.07546655 23.2018444 6.92486085 4.11933864 6.92486085 9.52340936 1.52029903 8.00305577 3.55271368e-15"></polygon>
+        </g>
+    </g>
+</svg>
+        </span>
       <% end %>
       <% else %>
         <div class="taken">
