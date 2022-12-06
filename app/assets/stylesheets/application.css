@@ -1,12 +1,22 @@
 @charset "UTF-8";
 
-/*!
- * Pico.css v1.5.6 (https://picocss.com)
- * Copyright 2019-2022 - Licensed under MIT
- */
-/**
- * Theme: default
- */
+@font-face {
+  font-family: Thunder;
+  src: url("../fonts/Thunder-HC.woff2") format("opentype");
+}
+
+@font-face {
+  font-family: ThunderBold;
+  font-weight: semibold;
+  src: url("../fonts/Thunder-SemiBoldHC.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Inter;
+  font-weight: 300;
+  src: url("../fonts/Inter-Medium.ttf") format("truetype");
+}
+
 :root {
   --font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
     "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -157,13 +167,15 @@ h6 {
 }
 
 h1 {
-  --font-size: 2rem;
+  --font-size: 2.8rem;
   --typography-spacing-vertical: 3rem;
+  font-family: ThunderBold;
 }
 
 h2 {
   --font-size: 1.75rem;
   --typography-spacing-vertical: 2.625rem;
+  font-family: Inter;
 }
 
 h3 {
@@ -386,6 +398,7 @@ header {
   position: absolute;
   left: 50%;
   transform: translate(-22px);
+  text-align: center;
 }
 
 body>header,
@@ -537,9 +550,7 @@ h6 {
   margin-top: 0;
   margin-bottom: var(--typography-spacing-vertical);
   color: var(--color);
-  font-weight: var(--font-weight);
   font-size: var(--font-size);
-  font-family: var(--font-family);
 }
 
 h1 {
