@@ -1,3 +1,4 @@
+<div class="spot-group">
 
 <div class="spot__time">
 <%= link_to :back, class: 'link' do %>
@@ -22,7 +23,6 @@
       </div>
   <% end %>
 
-
   <%= form.label :visitor_name, "Your name:" %>
   <%= form.text_field :visitor_name, class: "input", autofocus: true %>
   <%= form.label :visitor_email, "Your e-mail:" %>
@@ -34,3 +34,5 @@
   <%= form.submit "Create appointment" %>
 
 <% end %>
+
+</div>
