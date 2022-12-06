@@ -1,20 +1,15 @@
 @charset "UTF-8";
 
 @font-face {
-  font-family: Thunder;
-  src: url("fonts/Thunder-HC.woff2") format("opentype");
-}
-
-@font-face {
   font-family: ThunderBold;
-  font-weight: semibold;
-  src: url("fonts/Thunder-SemiBoldHC.otf") format("opentype");
+  font-weight: bold;
+  src: url("Thunder-SemiboldLC.ttf") format("truetype");
 }
 
 @font-face {
   font-family: Inter;
   font-weight: 300;
-  src: url("fonts/Inter-Medium.ttf") format("truetype");
+  src: url("Inter-Medium.ttf") format("truetype");
 }
 
 :root {
@@ -187,7 +182,7 @@ h6 {
 }
 
 h1 {
-  --font-size: 2.8rem;
+  --font-size: 55pt;
   --typography-spacing-vertical: 3rem;
   font-family: ThunderBold;
 }
@@ -295,6 +290,10 @@ progress,
  */
 main {
   display: block;
+}
+
+.container {
+  margin-top: 200px;
 }
 
 body {
@@ -413,7 +412,7 @@ header {
   margin-bottom: 40px;
   top: 0;
   transition: 0.2s;
-  position: sticky;
+  position: fixed;
   background: #4D21CB;
   display: flex;
   justify-content: center;
@@ -946,7 +945,7 @@ textarea {
 input,
 select,
 textarea {
-  background: black;
+  background: rgba(0, 0, 0, 30%);
   color: #ffffff;
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius);
@@ -2694,6 +2693,7 @@ textarea,
   align-items: center;
   font-size: 20pt;
   margin-bottom: 30px;
+  font-family: Inter;
 }
 
 .button span:last-child {
@@ -2707,7 +2707,7 @@ textarea,
   text-decoration: none;
   border-radius: 15px;
   display: block;
-  margin-top: 8px;
+  margin-bottom: 30px;
 }
 
 .button:hover {
