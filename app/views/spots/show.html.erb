@@ -1,20 +1,21 @@
 <% if @spot && @spot.status != "delete" %>  
 
-<h1> Appointment with <%= @spot.calendar.name %></h1>
-<div class="button">
-  <%= local_time(@spot.start_date, '%d-%m-%Y at %H:%M') %> - 
-  <%= local_time(@spot.end_date, '%H:%M') %>
-</div>
+<div class="spot-group">
+  <h2> Appointment with <%= @spot.calendar.name %></h2>
+  <div class="button">
+    <%= local_time(@spot.start_date, '%d-%m-%Y at %H:%M') %> - 
+    <%= local_time(@spot.end_date, '%H:%M') %>
+  </div>
 
 <a class="small--button" href="<%= @cal.google_url %>">Add to Google Calendar</a>
-
 <a class="small--button" download="calendar-event.ics" href="<%= @cal.ical_url %>">Add to Apple calendar</a>
 
+</div>
 
 <br>
   <%= link_to "Cancel this appointment", spot_cancel_path(@spot.slug) %>
 <% else %>
-  <h1>Nothing to see here...sorry!</h1>
+  <h2>Nothing to see here...sorry!</h2>
 <% end %>
 
 <% if @spot && @spot.status == "delete" %>  

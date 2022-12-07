@@ -38,13 +38,10 @@
           <% if @calendar %>
           <h1 id="title"><%= @calendar.name %></h1>
           <% end %>
-          <% if @spot %>
-            <h2 id="title"> <%= local_time(@spot.start_date, '%H:%M') %> -  <%= local_time(@spot.end_date, '%H:%M') %></h2>
-          <% end %>
       </div>
     </header>
   </header>
-    <main class="container">
+    <main class="container" id="container">
       <% flash.each do |type, msg| %>
         <div class="flash">
           <%= msg %>
