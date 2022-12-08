@@ -12,7 +12,8 @@
     </g>
 </svg>
 <% end %>
-  <h2><%= local_time(@spot.start_date,'%e %B') %></h2>
+  <h2><%= local_time(@spot.start_date,'%e %B') %> at <time datetime="<%= @spot.start_date%>"><%= local_time(@spot.start_date, '%H:%M') %></time> - 
+        <time datetime="<%= @spot.end_date%>"><%= local_time(@spot.end_date, '%H:%M') %></time></h2>
 </div>
 <%= form_with url: "/spot/reserve/#{@spot.slug}", data: { turbo: false }, method: :patch do |form| %>
   <% if @spot.errors.any? %>

@@ -7,8 +7,11 @@
     <%= local_time(@spot.end_date, '%H:%M') %>
   </div>
 
-<a class="small--button" href="<%= @cal.google_url %>">Add to Google Calendar</a>
-<a class="small--button" download="calendar-event.ics" href="<%= @cal.ical_url %>">Add to Apple calendar</a>
+<div class="button--group">
+  <a class="small--button" href="<%= @cal.google_url %>">Add to Google Calendar</a>
+  <a class="small--button" download="calendar-event.ics" href="<%= @cal.ical_url %>">Add to Apple calendar</a>
+  <a class="small--button rainbow" onclick="moreConfetti()">Just give me more confetti</a>
+</div>
 
 </div>
 
