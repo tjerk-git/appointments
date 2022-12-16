@@ -26,8 +26,15 @@
 
   <%= form.label :visitor_name, "Your name:" %>
   <%= form.text_field :visitor_name, class: "input", autofocus: true %>
+
+
+  <%= form.check_box :send_email, { onclick: "showEmail()"}, true, false %>
+  <%= form.label :send_email, "Send me an e-mail with appointment info" %>
+  <br><br>
+  <div class="email_form" id="email_form">
   <%= form.label :visitor_email, "Your e-mail:" %>
   <%= form.email_field :visitor_email %>
+  </div>
 
   <%= form.label :comment, "Optional comment for host:" %>
   <%= form.text_area :comment, class: "input" %>
@@ -37,3 +44,4 @@
 <% end %>
 
 </div>
+

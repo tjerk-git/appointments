@@ -30,3 +30,8 @@ function scrollFunction() {
         }
     }
 }
+
+
+function showEmail() {
+    document.getElementById("email_form").classList.toggle("show");
+}

@@ -33,8 +33,8 @@ class SpotsController < ApplicationController
     return unless spot
 
     if spot.status != "delete"
-      unless spot.visitor_email.empty?
-        spot.visitor_name = ""
+      unless spot.visitor_name.empty?
+        spot.visitor_name = nil
         ## Check domain verification in model
         spot.visitor_email = nil
         spot.slug = spot.to_slug
@@ -54,9 +54,9 @@ class SpotsController < ApplicationController
           if @owner.id == spot.calendar.owner_id && spot.status == ""
             spot.status = "delete"
             spot.save(validate: false)
-            if spot.visitor_email
-              SpotMailer.with(spot: spot).spot_deleted_mail.deliver_later
-            end 
+            # if spot.visitor_email
+            #   SpotMailer.with(spot: spot).spot_deleted_mail.deliver_later
+            # end 
           end
         end
       end
@@ -72,7 +72,7 @@ class SpotsController < ApplicationController
 
     return unless @spot
 
-    if @spot.visitor_email.nil?
+    if @spot.visitor_name.nil?
       @spot.visitor_name = params[:visitor_name]
       ## Check domain verification in model
       @spot.visitor_email = params[:visitor_email]
@@ -81,7 +81,10 @@ class SpotsController < ApplicationController
       if @spot.save 
         flash[:succes] = "Spot has been reserved!"
         redirect_to spot_show_path(@spot.slug)
-        SpotMailer.with(spot: @spot).spot_reserved_mail.deliver_now
+
+        if params[:send_email] && params[:visitor_email]
+          SpotMailer.with(spot: @spot).spot_reserved_mail.deliver_now
+        end
       else
         render :reserve
       end
