@@ -5,8 +5,7 @@ class HamakiTestController < ApplicationController
     Spot.delete_all
     Calendar.delete_all
     Owner.delete_all
-    render :nothing
-  end
+    head :ok, content_type: "text/html"  end
 
   def get_calendars
     @calendars = Calendar.all
