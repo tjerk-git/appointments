@@ -138,6 +138,7 @@ class SpotsController < ApplicationController
           last_spot = Spot.last
           spot = Spot.new
           spot.calendar = @calendar
+          spot.location = block['location']
           spot.start_date = last_spot.end_date.to_datetime
           spot.end_date = last_spot.end_date.to_datetime + time_per_block.minutes
           created_block[:spots] << spot
