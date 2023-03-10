@@ -12,6 +12,7 @@ class CalendarsController < ApplicationController
     url = @owner.user_id + "/" + data['name'].parameterize(separator: '-')
     @calendar.url = url
     @calendar.client_id = data['id']
+    @calendar.description = data['description']
     @calendar.owner = @owner
 
     return unless @calendar.save

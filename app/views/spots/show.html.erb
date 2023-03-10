@@ -2,6 +2,7 @@
 
 <div class="spot-group">
   <h2> Appointment with <%= @spot.calendar.name %></h2>
+  
   <div class="button">
     <%= local_time(@spot.start_date, '%d-%m-%Y at %H:%M') %> - 
     <%= local_time(@spot.end_date, '%H:%M') %>

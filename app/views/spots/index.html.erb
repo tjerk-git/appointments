@@ -7,6 +7,8 @@
     <% day[:spots].each do |spot| %>
 
     <% if spot.visitor_name == nil %>
+
+      <%= spot.location  %>
       <%= link_to spot_reserve_path(spot.slug), class: "button"  do %>
         <time datetime="<%= spot.start_date%>"><%= local_time(spot.start_date, '%H:%M') %></time> - 
         <time datetime="<%= spot.end_date%>"><%= local_time(spot.end_date, '%H:%M') %></time>

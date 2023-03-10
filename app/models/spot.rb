@@ -1,14 +1,3 @@
-## 
-# spots = { days: [
-#   { day: "14 mei", spots: [
-#     Spot.find(33),
-#     Spot.find(34),
-#   ] },
-#   { day: "15 mei", spots: [
-#     Spot.find(36),
-#     Spot.find(37),
-#   ]}
-# ]}
 
 class Spot < ApplicationRecord
   belongs_to :calendar

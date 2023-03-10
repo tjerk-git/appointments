@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_02_100616) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_10_130523) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_02_100616) do
     t.string "status", default: ""
     t.string "slug", default: ""
     t.text "comment", default: ""
+    t.string "location", default: ""
     t.index ["calendar_id"], name: "index_spots_on_calendar_id"
   end
 

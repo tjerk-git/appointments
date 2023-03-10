@@ -60,6 +60,9 @@
         </svg>
           <% if @calendar %>
           <h1 id="title"><%= @calendar.name %></h1>
+          <% if @calendar.description%>
+            <p><%= @calendar.description %> </p>
+          <% end %>
           <% end %>
       </div>
     </header>
