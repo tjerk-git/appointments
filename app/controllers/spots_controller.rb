@@ -127,7 +127,7 @@ class SpotsController < ApplicationController
         # first
         spot = Spot.new
         spot.calendar = @calendar
-        spot.location = calendar['recipe']['location']
+        spot.location = block['location']
         spot.start_date = Time.at(block['startTime']).to_datetime
         spot.end_date = start_time + time_per_block.minutes
         spot.save
