@@ -29,8 +29,7 @@ class CalendarsController < ApplicationController
       @calendar.description = data["description"]
       # @calendar.location = data["location"]
       @calendar.save
-    else 
-      puts "Calendar is van iemand anders of zo"
+
     end
   end
 
