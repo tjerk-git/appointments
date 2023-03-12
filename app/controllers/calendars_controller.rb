@@ -20,6 +20,20 @@ class CalendarsController < ApplicationController
     render json: @calendar
   end
 
+
+  def update 
+    return unless @owner
+    @calendar = Calendar.find_by_client_id(params[:id])
+    if @calendar.owner == @owner 
+      data = JSON.parse (request.raw_post)
+      @calendar.description = data["description"]
+      # @calendar.location = data["location"]
+      @calendar.save
+    else 
+      puts "Calendar is van iemand anders of zo"
+    end
+  end
+
   def destroy 
     return unless @owner
     @calendar = Calendar.find_by_client_id(params[:id])
