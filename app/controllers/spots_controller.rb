@@ -113,8 +113,21 @@ class SpotsController < ApplicationController
       result_calendar = Hash.new
       result_calendar[:calendar_id] = calendar['id']
       result_calendar[:created_blocks] = []
+      
+      if calendar['recipe']['breaks'] != nil
+        puts "😀hoi"
+        break_every  = calendar['recipe']['breaks'] ['every']
+        break_length = calendar['recipe']['breaks'] ['length']
+      else 
+        break_every = 10000
+      end
+      
+      
+      # pause_every = calendar['recipe']['pause_every']      
+      # pause_length = calendar['recipe']['pause_length'].to_i
 
       calendar['blocks'].each do |block|
+        
         created_block = Hash.new
         created_block[:block_id] = block['blockId']
         created_block[:spots] = []
@@ -132,6 +145,7 @@ class SpotsController < ApplicationController
         spot.end_date = start_time + time_per_block.minutes
         spot.save
         created_block[:spots] << spot
+        spots_planned = 1
 
         #create rest
         total_spots.times do
@@ -139,10 +153,19 @@ class SpotsController < ApplicationController
           spot = Spot.new
           spot.calendar = @calendar
           spot.location = block['location']
-          spot.start_date = last_spot.end_date.to_datetime
-          spot.end_date = last_spot.end_date.to_datetime + time_per_block.minutes
-          created_block[:spots] << spot
-          spot.save
+          if spots_planned % break_every == 0 
+            spot.start_date = last_spot.end_date.to_datetime + break_length.minutes
+            spot.end_date = last_spot.end_date.to_datetime + time_per_block.minutes + break_length.minutes
+          else
+            spot.start_date = last_spot.end_date.to_datetime
+            spot.end_date = last_spot.end_date.to_datetime + time_per_block.minutes
+          end
+          
+          if spot.end_date < end_time 
+            created_block[:spots] << spot
+            spot.save
+          end          
+          spots_planned += 1
         end
         result_calendar[:created_blocks] << created_block
       end
