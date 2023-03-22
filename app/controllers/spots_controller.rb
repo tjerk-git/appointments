@@ -115,11 +115,17 @@ class SpotsController < ApplicationController
       result_calendar[:created_blocks] = []
       
       if calendar['recipe']['breaks'] != nil
-        puts "😀hoi"
         break_every  = calendar['recipe']['breaks'] ['every']
         break_length = calendar['recipe']['breaks'] ['length']
       else 
         break_every = 10000
+      end
+      
+      if calendar['recipe']['lunchBreak'] != nil 
+        lunch_length = calendar['recipe']['lunchBreak']['length']
+        lunch_start_hour= calendar['recipe']['lunchBreak']['startHour']
+      else 
+        lunch_start_hour = 100
       end
       
       
@@ -127,7 +133,7 @@ class SpotsController < ApplicationController
       # pause_length = calendar['recipe']['pause_length'].to_i
 
       calendar['blocks'].each do |block|
-        
+        lunch_planned = false        
         created_block = Hash.new
         created_block[:block_id] = block['blockId']
         created_block[:spots] = []
@@ -153,7 +159,14 @@ class SpotsController < ApplicationController
           spot = Spot.new
           spot.calendar = @calendar
           spot.location = block['location']
-          if spots_planned % break_every == 0 
+          if !lunch_planned && last_spot.end_date.hour == lunch_start_hour
+            # Plan lunch
+            spot.start_date = last_spot.end_date.to_datetime + lunch_length.minutes
+            spot.end_date = last_spot.end_date.to_datetime + time_per_block.minutes + lunch_length.minutes
+            
+            lunch_planned = true
+            spots_planned = break_every 
+          elsif spots_planned % break_every == 0 
             spot.start_date = last_spot.end_date.to_datetime + break_length.minutes
             spot.end_date = last_spot.end_date.to_datetime + time_per_block.minutes + break_length.minutes
           else
