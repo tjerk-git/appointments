@@ -159,7 +159,7 @@ class SpotsController < ApplicationController
           spot = Spot.new
           spot.calendar = @calendar
           spot.location = block['location']
-          if !lunch_planned && ((last_spot.end_date.hour == lunch_start_hour && last_spot.end_date.min > 30))
+          if !lunch_planned && ((last_spot.end_date.hour == lunch_start_hour && last_spot.end_date.min > 15))
             # Plan lunch
             spot.start_date = last_spot.end_date.to_datetime + lunch_length.minutes
             spot.end_date = last_spot.end_date.to_datetime + time_per_block.minutes + lunch_length.minutes
