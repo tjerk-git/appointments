@@ -22,7 +22,7 @@ class SpotsController < ApplicationController
     @cal = AddToCalendar::URLs.new(
       start_datetime: @spot.start_date, 
       title: @spot.calendar.name, 
-      timezone: 'Europe/London'
+      timezone: 'Europe/Amsterdam'
     )
 
   end
