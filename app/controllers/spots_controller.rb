@@ -20,7 +20,8 @@ class SpotsController < ApplicationController
 
     # create new instance, adding your event attributes
     @cal = AddToCalendar::URLs.new(
-      start_datetime: @spot.start_date, 
+      #start_datetime: @spot.start_date, 
+      start_datetime: Time.new(@spot.start_date.strftime("%Y"), @spot.start_date.strftime("%m"), @spot.start_date.strftime("%d"), @spot.start_date.strftime("%H"), @spot.start_date.strftime("%M")), 
       title: @spot.calendar.name, 
       timezone: 'Europe/Amsterdam'
     )
