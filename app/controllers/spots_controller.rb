@@ -18,8 +18,6 @@ class SpotsController < ApplicationController
 
     return unless @spot
 
-    Time.use_zone("Europe/Amsterdam")
-    
     # create new instance, adding your event attributes
     @cal = AddToCalendar::URLs.new(
       #start_datetime: @spot.start_date, 
