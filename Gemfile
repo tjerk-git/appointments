@@ -38,9 +38,10 @@ gem "redis", "~> 4.0"
 
 gem "letter_opener", group: :development
 
-gem 'add_to_calendar'
 
 gem "postmark-rails"
+
+gem "icalendar", "~> 2.8"
 
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]

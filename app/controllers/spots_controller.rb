@@ -18,13 +18,12 @@ class SpotsController < ApplicationController
 
     return unless @spot
 
-    # create new instance, adding your event attributes
-    @cal = AddToCalendar::URLs.new(
-      #start_datetime: @spot.start_date, 
-      start_datetime: Time.new(@spot.start_date.strftime("%Y"), @spot.start_date.strftime("%m"), @spot.start_date.strftime("%d"), @spot.start_date.strftime("%H"), @spot.start_date.strftime("%M")), 
-      title: @spot.calendar.name, 
-      timezone: 'Europe/Amsterdam'
-    )
+    respond_to do |format|
+    format.html
+    format.ics do
+      calendar = Spots::IcalendarEvent.new(spot: @spot).call
+      send_data calendar.to_ical, type: 'text/calendar', disposition: 'attachment', filename: "Spot#{@spot.id}.ics"
+    end
 
   end
 
